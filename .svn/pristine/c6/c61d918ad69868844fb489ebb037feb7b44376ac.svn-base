@@ -1,0 +1,32 @@
+package com.kitri.project.user.service;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+public class UserService {
+	public UserDao dao;
+	
+	UserMenu menu;
+  //UserLogin 변수 선언
+  UserLogin login;
+	
+	
+	public int modifyUserInfo(String id, String pwd, String re_pwd, int carType, String name, String birth, String email, int phone) {
+		if(pwd!= re_pwd) //패스워드가 맞지 않는다면
+			JOptionPane.showMessageDialog(menu.panel, "비밀번호가 맞지 않습니다");
+		else
+			dao.modifyUserInfo(id, pwd, carType, name, birth, email, phone);
+		return dao.num;
+		
+		
+		
+		
+		
+	}
+
+	
+
+}

@@ -1,0 +1,13 @@
+package com.kitri.project.emp.main;
+
+import com.kitri.project.emp.view.EmpMain;
+
+public class EmpProgram {
+
+	public static void main(String[] args) {
+//		EmpMenuTab¤Ñ¹«¤ËbedFrame frame = new EmpMenuTabbedFrame();
+//		System.out.println("project theater");
+		new EmpMain();
+	}
+
+}

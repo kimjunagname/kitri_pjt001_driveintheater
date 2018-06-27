@@ -1,0 +1,41 @@
+package com.kitri.project.emp.service;
+
+import java.util.List;
+
+import com.kitri.project.emp.dto.EmpTimeMngDto;
+
+public class EmpTimeMngService {
+	EmpTimeMngDao dao;
+
+	public EmpTimeMngService() {
+		this.dao = new EmpTimeMngDao();
+	}
+
+	public List<EmpTimeMngDto> checkByEmpNo(int emp_no) {
+		return dao.selectByEmpNo(emp_no);
+	}
+
+	public List<EmpTimeMngDto> checkByBranchNo(int branch_no) {
+		return dao.selectByBranchNo(branch_no);
+	}
+	
+	//TODO 로그인시/출근버튼액션 시 출근여부 확인 후 출근처리를 위함 
+	public String checkInTimeByEmpNo(int emp_no) {
+		return dao.inTimeByEmpNo(emp_no);
+	}
+
+	//TODO 로그아웃시/퇴근버튼액션 시 퇴근여부 확인 후 퇴근처리를 위함 
+	public String checkOutTimeByEmpNo(int emp_no) {
+		return dao.outTimeByEmpNo(emp_no);
+	}
+		
+	//TODO 사원번호로 출근처리
+	public int attendByEmpNo(int emp_no) {
+		return dao.workIn(emp_no);
+	}
+	
+	//TODO 사원번호로 퇴근처리
+	public int leaveByEmpNo(int emp_no) {
+		return dao.workOut(emp_no);
+	}
+}

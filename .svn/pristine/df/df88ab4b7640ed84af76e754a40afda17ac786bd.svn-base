@@ -1,0 +1,197 @@
+package com.kitri.project.emp.controller;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.*;
+
+import com.kitri.project.branch.service.BranchService;
+import com.kitri.project.emp.dto.EmpInfoDto;
+import com.kitri.project.emp.service.EmpInfoService;
+import com.kitri.project.emp.view.EmpMain;
+import com.kitri.project.job.service.JobService;
+import com.kitri.project.supervisor.view.SuperAdministratorTabbedFrame;
+
+public class EmpInfoController implements ActionListener {
+	
+	
+	public static EmpInfoDto login;
+	EmpInfoService iService;
+	JobService jService;
+	BranchService bService;
+	
+	EmpMain empMain;
+	SuperAdministratorTabbedFrame superadminMenu= new SuperAdministratorTabbedFrame();
+//	JTabbedPane tabbedPane;
+//	JPanel nowP;
+	boolean idFlag = false;
+	boolean emailFlag = false;
+	public EmpInfoController(EmpMain empMain) {
+		this.empMain = empMain;
+		iService = new EmpInfoService();
+		jService = new JobService();
+		bService = new BranchService();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+	
+		if(obj == empMain.joinBtn) {								//메인의 가입버튼
+			empMain.pwdTf.setText("");
+			empMain.setVisible(false);
+			List<String> list = jService.getJobNames();
+			int size = list.size();
+			for (int i = 0; i < size; i++) {
+				empMain.joinFrame.jobC.add(list.get(i));
+			}
+			list = bService.getBranchNames();
+			size = list.size();
+			for (int i = 0; i < size; i++) {
+				empMain.joinFrame.branchC.add(list.get(i));
+			}
+			empMain.joinFrame.setVisible(true);
+		}else if(obj == empMain.joinFrame.cancelBtn) {
+			empMain.joinFrame.idTf.setText("");
+			empMain.joinFrame.pwdTf.setText("");
+			empMain.joinFrame.pwdChkTf.setText("");
+			empMain.joinFrame.nameTf.setText("");
+			empMain.joinFrame.birthTf.setText("");
+			empMain.joinFrame.phoneTf.setText("");
+			empMain.joinFrame.emailTf.setText("");
+			empMain.joinFrame.setVisible(false);
+			empMain.setVisible(true);
+		}else if(obj == empMain.joinFrame.idChkBtn) {
+			idFlag = iService.checkById(empMain.joinFrame.idTf.getText().trim());
+			System.out.println(empMain.joinFrame.idTf.getText());
+			System.out.println(idFlag);
+			if(!idFlag) {
+				JOptionPane.showMessageDialog(empMain.joinFrame, "사용할 수 있는 아이디입니다.", "확인", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(empMain.joinFrame, "사용할 수 없는 아이디입니다.", "확인", JOptionPane.WARNING_MESSAGE);
+			}
+		}else if(obj == empMain.joinFrame.emailChkBtn) {
+			emailFlag = iService.checkByEmail(empMain.joinFrame.emailTf.getText().trim());
+			if(!emailFlag) {
+				JOptionPane.showMessageDialog(empMain.joinFrame, "사용할 수 있는 이메일입니다.", "확인", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(empMain.joinFrame, "사용할 수 없는 이메일입니다.", "확인", JOptionPane.WARNING_MESSAGE);
+			}
+		}else if(obj == empMain.joinFrame.joinBtn) {				//회원가입폼의 가입버튼
+			String id = empMain.joinFrame.idTf.getText().trim();
+			String pwd = new String(empMain.joinFrame.pwdTf.getPassword());
+			String pwdChk = new String(empMain.joinFrame.pwdChkTf.getPassword());
+			if(!pwd.contentEquals(pwdChk)) {
+				empMain.joinFrame.pwdTf.setText("");
+				empMain.joinFrame.pwdChkTf.setText("");
+				JOptionPane.showMessageDialog(empMain.joinFrame, "비밀번호가 일치하지 않습니다.", "오류", JOptionPane.WARNING_MESSAGE);
+				empMain.joinFrame.pwdTf.requestFocus();
+			}else {
+				String name = empMain.joinFrame.nameTf.getText().trim();
+				String birth = empMain.joinFrame.birthTf.getText().trim();
+				String phone = empMain.joinFrame.phoneTf.getText().trim();
+				String email = empMain.joinFrame.emailTf.getText().trim();
+				int job_no = empMain.joinFrame.jobC.getSelectedIndex()+1;
+				String job_name = empMain.joinFrame.jobC.getSelectedItem();
+				int branch_no = empMain.joinFrame.branchC.getSelectedIndex()+1;
+				String branch_name = empMain.joinFrame.branchC.getSelectedItem();
+				EmpInfoDto emp = new EmpInfoDto();
+				emp.setEmp_id(id);
+				emp.setEmp_pwd(pwd);
+				emp.setEmp_name(name);
+				emp.setEmp_birth(birth);
+				emp.setEmp_phone(phone);
+				emp.setEmp_email(email);
+				emp.setJob_no(job_no);
+				emp.setJob_name(job_name);
+				emp.setBranch_no(branch_no);
+				emp.setBranch_name(branch_name);
+				if("".equals(id) || "".equals(name) || "".equals(email) || "".equals(pwd)) {
+					JOptionPane.showMessageDialog(empMain.joinFrame, "*인 필수 입력사항을 모두 입력해 주세요.", "오류", JOptionPane.WARNING_MESSAGE);
+				}else if(!idFlag) {
+					JOptionPane.showMessageDialog(empMain.joinFrame, "아이디 중복체크를 하세요.", "오류", JOptionPane.WARNING_MESSAGE);
+				}else if(!emailFlag) {
+					JOptionPane.showMessageDialog(empMain.joinFrame, "이메일 중복체크를 하세요.", "오류", JOptionPane.WARNING_MESSAGE);
+				}else {
+//					idFlag = service.checkById(id);
+//					emailFlag = service.checkByEmail(email);
+					if(iService.joinEmp(emp) > 0) {
+//						System.out.println("가입성공");
+						JOptionPane.showMessageDialog(empMain.joinFrame, "가입되었습니다.", "가입성공", JOptionPane.INFORMATION_MESSAGE);
+						empMain.joinFrame.idTf.setText("");
+						empMain.joinFrame.pwdTf.setText("");
+						empMain.joinFrame.pwdChkTf.setText("");
+						empMain.joinFrame.nameTf.setText("");
+						empMain.joinFrame.birthTf.setText("");
+						empMain.joinFrame.phoneTf.setText("");
+						empMain.joinFrame.emailTf.setText("");
+						empMain.joinFrame.setVisible(false);
+						idFlag = false;
+						emailFlag = false;
+						empMain.setVisible(true);
+					}else {
+						System.out.println("가입 실패");
+					}
+				}
+			}
+		}else if(obj == empMain.loginBtn || obj == empMain.pwdTf) {							//로그인
+			String id = empMain.idTf.getText().trim();
+			String pwd = new String(empMain.pwdTf.getPassword());
+			System.out.println(id);
+			System.out.println(pwd);
+			if("".equals(id) || "".equals(pwd)) {
+				return;
+			}
+			if((login = iService.loginEmp(id, pwd)) != null) {
+				empMain.idTf.setText("");
+				empMain.pwdTf.setText("");
+				empMain.setVisible(false);
+//				EmpLoginDao lDao= new EmpLoginDao();
+//				System.out.println("job_name은"+ lDao.getJobMane(id));
+				empMain.tabFrame.nameLabel.setText(login.getEmp_name()+"님");
+				empMain.tabFrame.gradeLabel.setText(login.getBranch_name()+"점 "+login.getJob_name());
+				if("최고관리자".equals(login.getJob_name())){
+					System.out.println("E_I_Controller 최고관리자 로그인");
+//					empMain.contentPane.get
+//					empMain.tabFrame.remove(empMain.tabFrame.workTabPanel);
+					empMain.superTabFrame.setVisible(true);
+				}else if("지점관리자".equals(login.getJob_name())) {
+					System.out.println("E_I_Controller 지점관리자 로그인");
+					empMain.tabFrame.workMainPanel.workInBtn.setVisible(false);
+					empMain.tabFrame.workMainPanel.workOutBtn.setVisible(false);
+					empMain.tabFrame.workMainPanel.timeMngBtn.setBounds(60, 75, 820, 360);
+					empMain.tabFrame.setVisible(true);
+				}else if("직원".equals(login.getJob_name())) {
+					System.out.println("E_I_Controller 직원 로그인");
+					empMain.tabFrame.workMainPanel.workInBtn.setVisible(true);
+					empMain.tabFrame.workMainPanel.workOutBtn.setVisible(true);
+					empMain.tabFrame.setVisible(true);
+				}
+			}else {
+				JOptionPane.showMessageDialog(empMain, "아이디 또는 비밀번호 확인후 다시 로그인하세요", "로그인실패", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+//			로그인처리
+//			if관리자 로그인 시
+//			else if최고관리자 로그인 시
+//			frame.super~~.setVisible(true);
+		}else if(obj == empMain.tabFrame.infoBtn) {
+//			TODO 정보수정
+			System.out.println("E_I_Controller 정보수정 버튼");
+//			TODO 로그아웃 시 모든 정보 초기화
+		}else if(obj == empMain.tabFrame.outBtn) {				//로그아웃
+			if("최고관리자".equals(login.getJob_name())){
+//				empMain.tabFrame.add(empMain.tabFrame.workTabPanel);
+			}else if("지점관리자".equals(login.getJob_name())) {
+				empMain.tabFrame.workMainPanel.timeMngBtn.setBounds(656, 73, 232, 361);
+			}
+			login = null;
+			empMain.tabFrame.setVisible(false);
+			empMain.tabFrame.workMainPanel.workInBtn.setEnabled(true);
+			empMain.tabFrame.workMainPanel.workOutBtn.setEnabled(true);
+			empMain.setVisible(true);
+		}
+	}
+}

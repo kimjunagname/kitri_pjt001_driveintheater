@@ -1,0 +1,300 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+
+public class EmpOrder extends JPanel {
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField textField_17;
+	private JTextField textField_18;
+	private JTextField textField_19;
+	private JTextField textField_20;
+	private JTextField textField_21;
+	private JTextField textField_22;
+	private JTextField textField_23;
+	public EmpOrder() {
+		setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\uC0C1\uD488 \uC774\uBBF8\uC9C0");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(27, 100, 179, 201);
+		add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("\uC0C1\uD488 \uC774\uBBF8\uC9C0");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(498, 100, 171, 187);
+		add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("\uC0C1\uD488 \uC774\uBBF8\uC9C0");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(27, 347, 179, 187);
+		add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("\uC0C1\uD488 \uC774\uBBF8\uC9C0");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(511, 347, 158, 170);
+		add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setText("\uC0C1\uD488\uBA85");
+		textField.setBounds(208, 94, 94, 37);
+		add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setText("\uCE58\uD0A8");
+		textField_1.setBounds(327, 94, 146, 37);
+		add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setText("\uAC00\uACA9");
+		textField_2.setBounds(208, 143, 94, 37);
+		add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("20,000");
+		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_3.setBounds(327, 143, 146, 37);
+		add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_4.setText("\uC218\uB7C9");
+		textField_4.setBackground(Color.GRAY);
+		textField_4.setBounds(208, 192, 265, 37);
+		add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_5.setText("\uC0C1\uD488\uBA85");
+		textField_5.setBounds(220, 347, 82, 41);
+		add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setText("\uD31D\uCF58");
+		textField_6.setBounds(327, 347, 146, 41);
+		add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setText("\uAC00\uACA9");
+		textField_7.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_7.setBounds(220, 400, 82, 41);
+		add(textField_7);
+		textField_7.setColumns(10);
+		
+		textField_8 = new JTextField();
+		textField_8.setText("7,000");
+		textField_8.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_8.setBounds(327, 400, 146, 41);
+		add(textField_8);
+		textField_8.setColumns(10);
+		
+		textField_9 = new JTextField();
+		textField_9.setBackground(Color.GRAY);
+		textField_9.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_9.setText("\uC218\uB7C9");
+		textField_9.setBounds(220, 458, 253, 37);
+		add(textField_9);
+		textField_9.setColumns(10);
+		
+		textField_10 = new JTextField();
+		textField_10.setText("\uC0C1\uD488\uBA85");
+		textField_10.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_10.setBounds(687, 94, 94, 37);
+		add(textField_10);
+		textField_10.setColumns(10);
+		
+		JButton btnNewButton = new JButton("\uCDE8\uC18C");
+		btnNewButton.setBounds(747, 547, 94, 41);
+		add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("\uC8FC\uBB38");
+		btnNewButton_1.setBounds(855, 547, 94, 41);
+		add(btnNewButton_1);
+		
+		textField_11 = new JTextField();
+		textField_11.setText("\uC624\uC9D5\uC5B4");
+		textField_11.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_11.setBounds(795, 94, 138, 37);
+		add(textField_11);
+		textField_11.setColumns(10);
+		
+		textField_12 = new JTextField();
+		textField_12.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_12.setText("\uAC00\uACA9");
+		textField_12.setBounds(687, 143, 94, 37);
+		add(textField_12);
+		textField_12.setColumns(10);
+		
+		textField_13 = new JTextField();
+		textField_13.setText("4,500");
+		textField_13.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_13.setBounds(795, 143, 138, 37);
+		add(textField_13);
+		textField_13.setColumns(10);
+		
+		textField_14 = new JTextField();
+		textField_14.setText("\uC218\uB7C9");
+		textField_14.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_14.setBackground(Color.GRAY);
+		textField_14.setBounds(687, 192, 246, 37);
+		add(textField_14);
+		textField_14.setColumns(10);
+		
+		textField_15 = new JTextField();
+		textField_15.setText("\uC0C1\uD488\uBA85");
+		textField_15.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_15.setBounds(687, 347, 85, 37);
+		add(textField_15);
+		textField_15.setColumns(10);
+		
+		textField_16 = new JTextField();
+		textField_16.setText("\uCF5C\uB77C");
+		textField_16.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_16.setBounds(795, 347, 138, 41);
+		add(textField_16);
+		textField_16.setColumns(10);
+		
+		textField_17 = new JTextField();
+		textField_17.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_17.setText("\uAC00\uACA9");
+		textField_17.setBounds(687, 400, 85, 41);
+		add(textField_17);
+		textField_17.setColumns(10);
+		
+		textField_18 = new JTextField();
+		textField_18.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_18.setText("2,500");
+		textField_18.setBounds(795, 402, 138, 36);
+		add(textField_18);
+		textField_18.setColumns(10);
+		
+		textField_19 = new JTextField();
+		textField_19.setBackground(Color.GRAY);
+		textField_19.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_19.setText("\uC218\uB7C9");
+		textField_19.setBounds(687, 451, 246, 37);
+		add(textField_19);
+		textField_19.setColumns(10);
+		
+		JButton btnNewButton_2 = new JButton("-");
+		btnNewButton_2.setFont(new Font("±º∏≤", Font.BOLD, 36));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(208, 241, 61, 49);
+		add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("+");
+		btnNewButton_3.setFont(new Font("±º∏≤", Font.BOLD, 35));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_3.setBounds(412, 241, 61, 46);
+		add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("-");
+		btnNewButton_4.setFont(new Font("±º∏≤", Font.BOLD, 36));
+		btnNewButton_4.setBounds(683, 241, 61, 46);
+		add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("+");
+		btnNewButton_5.setFont(new Font("±º∏≤", Font.BOLD, 36));
+		btnNewButton_5.setBounds(868, 241, 61, 46);
+		add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("-");
+		btnNewButton_6.setFont(new Font("±º∏≤", Font.BOLD, 36));
+		btnNewButton_6.setBounds(220, 507, 61, 46);
+		add(btnNewButton_6);
+		
+		JButton btnNewButton_7 = new JButton("+");
+		btnNewButton_7.setFont(new Font("±º∏≤", Font.BOLD, 34));
+		btnNewButton_7.setBounds(412, 507, 61, 46);
+		add(btnNewButton_7);
+		
+		JButton btnNewButton_8 = new JButton("-");
+		btnNewButton_8.setFont(new Font("±º∏≤", Font.BOLD, 29));
+		btnNewButton_8.setBounds(687, 500, 57, 37);
+		add(btnNewButton_8);
+		
+		JButton btnNewButton_9 = new JButton("+");
+		btnNewButton_9.setFont(new Font("±º∏≤", Font.BOLD, 29));
+		btnNewButton_9.setBounds(868, 500, 65, 34);
+		add(btnNewButton_9);
+		
+		textField_20 = new JTextField();
+		textField_20.setBounds(316, 241, 61, 44);
+		add(textField_20);
+		textField_20.setColumns(10);
+		
+		textField_21 = new JTextField();
+		textField_21.setBounds(781, 241, 60, 46);
+		add(textField_21);
+		textField_21.setColumns(10);
+		
+		textField_22 = new JTextField();
+		textField_22.setBounds(316, 507, 61, 43);
+		add(textField_22);
+		textField_22.setColumns(10);
+		
+		textField_23 = new JTextField();
+		textField_23.setBounds(786, 500, 55, 34);
+		add(textField_23);
+		textField_23.setColumns(10);
+	}
+
+	/**
+	 * Create the panel.
+	 */
+	public static void main(String[] args) {
+		
+		
+		
+		JFrame f = new JFrame();
+		
+		
+		
+		f.setTitle("ªÛ«∞µÓ∑œ");
+		f.setBounds(100,100,980,600);
+		
+	}
+
+
+}

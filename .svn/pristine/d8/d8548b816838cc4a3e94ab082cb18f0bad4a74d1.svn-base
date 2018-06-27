@@ -1,0 +1,25 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class EmpBranchMainPanel extends JPanel {
+	public JButton salesBtn;
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpBranchMainPanel() {
+		setName("지점관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		salesBtn = new JButton("\uB9E4\uCD9C");
+		salesBtn.setBounds(76, 102, 775, 352);
+		add(salesBtn);
+
+	}
+
+}

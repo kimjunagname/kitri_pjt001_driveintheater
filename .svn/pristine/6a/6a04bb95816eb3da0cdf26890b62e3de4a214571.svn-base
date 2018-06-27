@@ -1,0 +1,40 @@
+package com.kitri.project.movie.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kitri.project.movie.dto.MovieDto;
+import com.kitri.project.sql.CarSql;
+
+public class SuperAdminMovieDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public SuperAdminMovieDao() {
+		myCon = new CarSql();
+	}
+	
+//	TODO admin용 영화등록 메소드
+	public int insertMovieByAdmin(MovieDto dto) {
+		return 0;
+	}
+	
+//	TODO admin용 영화수정 메소드
+	public int updateMovieByAdmin(MovieDto dto) {
+		return 0;
+	}
+	
+//	TODO admin용 영화삭제 메소드
+	public int deleteMovieByAdmin(int movie_no) {
+		return 0;
+	}
+	
+//	TODO admin용 영화 조회 메소드
+	public List<MovieDto> selectAllMovieByAdmin(){
+		return null;
+	}
+	
+}

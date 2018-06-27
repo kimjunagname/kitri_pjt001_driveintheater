@@ -1,0 +1,46 @@
+package com.kitri.project.emp.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import com.kitri.project.emp.service.EmpTimeMngService;
+import com.kitri.project.emp.view.EmpMain;
+
+public class EmpWorkController implements ActionListener {
+	EmpMain empMain;
+	EmpTimeMngService tService;
+	
+	public EmpWorkController(EmpMain empMain) {
+		this.empMain = empMain;
+		tService = new EmpTimeMngService();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		int emp_no = EmpInfoController.login.getEmp_no(); 
+		
+		if(obj == empMain.tabFrame.workMainPanel.workInBtn) {
+			System.out.println("E_W_Controller 출근버튼");
+			if("".equals(tService.checkInTimeByEmpNo(emp_no))){
+				System.out.println("출근전");
+				tService.attendByEmpNo(emp_no);
+			}else {
+				System.out.println("출근완료");
+			}
+			
+		}else if(obj == empMain.tabFrame.workMainPanel.workOutBtn) {
+			System.out.println("E_W_Controller 퇴근버튼");
+			if("".equals(tService.checkOutTimeByEmpNo(emp_no))){
+				System.out.println("퇴근전");
+				tService.leaveByEmpNo(emp_no);
+			}else {
+				System.out.println("퇴근완료");
+			}
+			
+		}else if(obj == empMain.tabFrame.workMainPanel.timeMngBtn) {
+			System.out.println("E_W_Controller 근태관리버튼");
+		}
+	}
+
+}

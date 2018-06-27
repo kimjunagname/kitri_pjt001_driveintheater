@@ -1,0 +1,117 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+
+public class UserMovieReservationCancelPanel extends JPanel {
+  
+  public JButton backP2; //되돌아가기
+  public JButton payCancleP2; //결재취소
+  public JTextArea mTitleP2; //영화 제목
+  public JTextArea locationP2; //지점
+  public JTextArea openDayP2;//상영일
+  public JTextArea openTimeP2;//상영시간
+  public JTextArea carKindP2;//차종
+  public JTextArea countP2;//수량
+  public JTextArea payP2;//금액
+  
+  
+  /**
+   * Create the panel.
+   */
+  public UserMovieReservationCancelPanel() {
+    setLayout(null);
+    
+    JLabel label = new JLabel("영화예매 내역");
+    label.setHorizontalAlignment(SwingConstants.RIGHT);
+    label.setFont(new Font("굴림", Font.BOLD, 25));
+    label.setBounds(122, 10, 219, 35);
+    add(label);
+    
+    backP2 = new JButton("BACK"); //되돌아가기
+    backP2.setBounds(12, 10, 68, 30);
+    add(backP2);
+    
+    JLabel label_1 = new JLabel("영화제목");
+    label_1.setFont(new Font("굴림", Font.BOLD, 23));
+    label_1.setBounds(14, 95, 140, 35);
+    add(label_1);
+    
+    JLabel label_2 = new JLabel("지점");
+    label_2.setHorizontalAlignment(SwingConstants.LEFT);
+    label_2.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_2.setBounds(22, 142, 80, 25);
+    add(label_2);
+    
+    JLabel label_3 = new JLabel("상영일");
+    label_3.setHorizontalAlignment(SwingConstants.LEFT);
+    label_3.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_3.setBounds(22, 187, 80, 25);
+    add(label_3);
+    
+    JLabel label_4 = new JLabel("상영시간");
+    label_4.setHorizontalAlignment(SwingConstants.LEFT);
+    label_4.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_4.setBounds(22, 232, 80, 25);
+    add(label_4);
+    
+    JLabel label_5 = new JLabel("차종");
+    label_5.setHorizontalAlignment(SwingConstants.LEFT);
+    label_5.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_5.setBounds(22, 277, 80, 25);
+    add(label_5);
+    
+    JLabel label_6 = new JLabel("수량");
+    label_6.setHorizontalAlignment(SwingConstants.LEFT);
+    label_6.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_6.setBounds(22, 322, 80, 25);
+    add(label_6);
+    
+    JLabel label_7 = new JLabel("금액");
+    label_7.setHorizontalAlignment(SwingConstants.LEFT);
+    label_7.setFont(new Font("굴림", Font.PLAIN, 18));
+    label_7.setBounds(25, 368, 80, 25);
+    add(label_7);
+    
+    locationP2 = new JTextArea(); //지점
+    locationP2.setBounds(127, 142, 211, 25);//지점 
+    add(locationP2);
+    
+    openDayP2 = new JTextArea();//상영일
+    openDayP2.setBounds(127, 187, 211, 25);//상영일
+    add(openDayP2);
+    
+    openTimeP2 = new JTextArea();//상영시간
+    openTimeP2.setBounds(127, 232, 211, 25);//상영시간
+    add(openTimeP2);
+    
+    carKindP2 = new JTextArea();//차종
+    carKindP2.setBounds(127, 277, 211, 25);//차종
+    add(carKindP2);
+    
+    countP2 = new JTextArea();//수량
+    countP2.setBounds(127, 322, 211, 25);//수량
+    add(countP2);
+    
+    payP2 = new JTextArea();//금액
+    payP2.setBounds(130, 368, 211, 25);//금액
+    add(payP2);
+    
+    payCancleP2 = new JButton("결제취소"); //결재취소
+    payCancleP2.setBounds(252, 419, 105, 48); //결재취소
+    add(payCancleP2);
+    
+    mTitleP2 = new JTextArea(); //영화 제목
+    mTitleP2.setBounds(122, 97, 211, 25);//영화 제목
+    add(mTitleP2);
+   
+    
+  }
+}

@@ -1,0 +1,62 @@
+package com.kitri.project.chart.view;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities; 
+
+public class BarChartTest extends ApplicationFrame {
+   
+   public BarChartTest( String applicationTitle , String chartTitle ) {
+      super( applicationTitle );        
+      JFreeChart barChart = ChartFactory.createBarChart(
+         chartTitle,           
+         "YEAR",            
+         "PRICE",            
+         createDataset(),          
+         PlotOrientation.HORIZONTAL,           
+         true, true, false);
+         
+      ChartPanel chartPanel = new ChartPanel( barChart );        
+      chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
+      setContentPane( chartPanel ); 
+   }
+   
+   private CategoryDataset createDataset( ) {
+//      final String total = "총매출";        //총
+      final String cash = "CASH";        //현금
+      final String millage = "MILEAGE";        //마일리지
+      final String year0 = "2018";        //2018
+      final String year1 = "2017";       //2017 
+      final String year2 = "2016";      //2016  
+      final DefaultCategoryDataset dataset = 
+      new DefaultCategoryDataset( );  
+/*
+      dataset.addValue( 2543000.0 , total , year0 );        
+      dataset.addValue( 75000.0 , total , year1 ); 
+      dataset.addValue( 954000.0 , total , year2 );        
+*/
+      dataset.addValue( 1543000.0 , cash , year0 );        
+      dataset.addValue( 65000.0 , cash , year1 );        
+      dataset.addValue( 950000.0 , cash , year2 );       
+
+      dataset.addValue( 1000000.0 , millage , year0 );        
+      dataset.addValue( 10000.0 , millage , year1 );        
+      dataset.addValue( 4000.0 , millage , year2 );        
+
+      return dataset; 
+   }
+   
+   public static void main( String[ ] args ) {
+	   BarChartTest chart = new BarChartTest("통계 stacked bar chart", 
+         "CHART TEST");
+      chart.pack( );        
+      RefineryUtilities.centerFrameOnScreen( chart );        
+      chart.setVisible( true ); 
+   }
+}
+

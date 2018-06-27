@@ -1,0 +1,53 @@
+package com.kitri.project.user.view;
+
+
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+
+public class UserMenuPanel extends JPanel {
+	public JButton modifyInfo;
+	public JButton movieReservation;
+	public JButton button;
+	public JButton button_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public UserMenuPanel() {
+		setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		add(panel);
+		
+		button = new JButton("\uB9C8\uC77C\uB9AC\uC9C0");
+		button.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		button.setBounds(12, 240, 166, 210);
+		panel.add(button);
+		
+		button_1 = new JButton("\uC601\uD654\uC608\uB9E4 \uB0B4\uC5ED");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		button_1.setBounds(192, 20, 168, 210);
+		panel.add(button_1);
+		
+		movieReservation = new JButton("\uC601\uD654 \uC608\uB9E4");
+		movieReservation.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		movieReservation.setBounds(12, 20, 168, 210);
+		panel.add(movieReservation);
+		
+		modifyInfo = new JButton("\uC815\uBCF4\uC218\uC815");
+		modifyInfo.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		modifyInfo.setBounds(192, 240, 166, 210);
+		panel.add(modifyInfo);
+		
+	}
+}

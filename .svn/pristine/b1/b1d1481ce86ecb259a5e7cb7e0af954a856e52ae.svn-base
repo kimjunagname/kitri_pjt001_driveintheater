@@ -1,0 +1,106 @@
+package com.kitri.project.user.view;
+
+import com.kitri.project.user.controller.UserLoginController;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class UserLogin extends JFrame {
+  
+//  생성자 선언
+  public JPanel panel;
+  public CardLayout card = new CardLayout();
+  public UserLoginPanel p1= new UserLoginPanel();
+//  public UserMemberJoin p2= new UserMemberJoin();
+  public UserMemberJoinPanel2 p2 = new UserMemberJoinPanel2();
+  public UserLoginIdLookupPanel1 p3 = new UserLoginIdLookupPanel1();
+  public UserLoginIdLookupPanel2 p3_2 = new UserLoginIdLookupPanel2();
+  public UserLoginPWDLookPanel1 p4 = new UserLoginPWDLookPanel1();
+  public UserLoginPWDLookPanel2 p4_2 = new UserLoginPWDLookPanel2();
+  public UserLoginController userLoginController;
+  public UserMenu userMenuframe;
+  public UserLogin userLoginFrame;
+
+  /**
+   * Launch the application.
+   */
+  public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        try {
+          UserLogin userLoginFrame = new UserLogin();
+          userLoginFrame.setVisible(true);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
+  /**
+   * Create the frame.
+   */
+  public UserLogin() {
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setBounds(100, 100, 400, 600);
+    getContentPane().setLayout(null);
+    
+    panel = new JPanel();
+    panel.setBounds(14, 12, 380, 570);
+    getContentPane().add(panel);
+    panel.setLayout(card);
+    
+    panel.add("loginView1", p1);
+    panel.add("joinView2", p2);
+    panel.add("idsuchView3", p3);
+    panel.add("idsuchResultView3_2", p3_2);
+    panel.add("pwdsuchView4", p4);
+    panel.add("pwdsuchResultView4_2",p4_2);
+    
+    
+    card.show(panel, "loginView1");
+    setResizable(false);
+    
+//    UserLoginControler 연동
+    UserLoginController userLoginController = new UserLoginController(this);
+//      userMenuframe 생성자 선언
+    userMenuframe = new UserMenu();
+    
+// 각페널에서 버튼 액션시 리스너 선언
+    p1.joinButtonp1.addActionListener(userLoginController); //회원가입 버튼
+    p1.loginButtonp1.addActionListener(userLoginController); // 로그인 버튼
+    p1.idSuchButtenp1.addActionListener(userLoginController);  // 아이디 찾기 버튼
+    p1.pwdSuchButtenp1.addActionListener(userLoginController); //비밀번호 찾기 버튼
+    
+    p1.idintextp1.addMouseListener((MouseListener) userLoginController);// id 입력
+    p1.pwdintextp1.addMouseListener((MouseListener) userLoginController);//pass 입력
+    
+    p2.BackButtenP5.addActionListener(userLoginController);//뒤로가기 버튼
+    p2.joinBettonP5.addActionListener(userLoginController);//가입 버튼
+ 
+    p3.emailTextP3.addActionListener(userLoginController);//email text
+    p3.nameTextP3.addActionListener(userLoginController); // name text
+
+    p3.emailTextP3.addMouseListener((MouseListener) userLoginController);// name 입력
+    p3.nameTextP3.addMouseListener((MouseListener) userLoginController);//email 입력
+  
+    p3.suchButtonP3.addActionListener(userLoginController); //조회 버튼
+    p3.backBtnP3.addActionListener(userLoginController);//back 버튼
+    
+    p3_2.idSuchTextP3_2.addActionListener(userLoginController); //such id text
+    p3_2.okButtenP3_2.addActionListener(userLoginController);//조회 버튼
+    
+    p4.emailTextP4.addActionListener(userLoginController);//email text
+    p4.idTextP4.addActionListener(userLoginController);//idtext
+    p4.backButtonP4.addActionListener(userLoginController); //back butten
+    p4.suchButtenP4.addActionListener(userLoginController);//조회 butten
+
+    p4.idTextP4.addMouseListener((MouseListener) userLoginController);// idTextP4 입력
+    p4.emailTextP4.addMouseListener((MouseListener) userLoginController);//emailTextP4 입력
+
+    
+    p4_2.pwdTextP4_2.addActionListener(userLoginController);//idtext
+    p4_2.okButtenP4_2.addActionListener(userLoginController);//확인 butten
+   
+  }
+}

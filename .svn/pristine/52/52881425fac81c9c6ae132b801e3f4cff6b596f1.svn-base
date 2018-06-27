@@ -1,0 +1,40 @@
+package com.kitri.project.chart.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kitri.project.chart.dto.PayChartDto;
+import com.kitri.project.sql.CarSql;
+
+public class PayChartDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public PayChartDao() {
+		myCon = new CarSql();
+	}
+
+	//TODO selectByBranchNo 지점별 영화 매출 통계
+	public List<PayChartDto> selectByBranchNo(String branch_no){
+		List<PayChartDto> list = new ArrayList<>();
+		try {
+			con = myCon.connect();
+			String sql = "select branch_no, ticket_paydate,  from TICKET_PAY";
+			pstmt = con.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
+	
+	//TODO selectByPeriod 기간별 영화 매출 통계
+//	List<PayChartDto> selectByPeriod(String date)
+	
+	
+}

@@ -1,0 +1,43 @@
+package com.kitri.project.emp.controller;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.kitri.project.emp.dto.EmpInfoDto;
+import com.kitri.project.emp.view.*;
+
+public class EmpMainController implements ActionListener, ChangeListener {
+	EmpInfoDto login = null;
+	
+	EmpMain frame;
+	EmpJoin joinFrame;
+	EmpMenuTabbedFrame tabbedFrame;
+	JTabbedPane tabbedPane;
+	JPanel nowP;
+	
+	public EmpMainController(EmpMain empMain) {
+		this.frame = empMain;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+	
+
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		tabbedPane = (JTabbedPane) e.getSource();
+		nowP = (JPanel) tabbedPane.getSelectedComponent();
+		System.out.println(nowP.getName());
+
+	}
+
+}

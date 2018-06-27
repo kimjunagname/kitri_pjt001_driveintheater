@@ -1,0 +1,82 @@
+package com.kitri.project.supervisor.view;
+
+import java.awt.EventQueue;
+
+import javax.swing.*;
+
+public class SuperAdministratorTabbedFrame extends JFrame {
+	
+	SuperAdministratorStatisticsPanel movieReserveStaticPanel = new SuperAdministratorStatisticsPanel();
+	SuperAdministratorOrderManagePanel orderManagePanel = new SuperAdministratorOrderManagePanel();
+	SuperAdministratorSalesStaticsPanel salesManagePanel = new SuperAdministratorSalesStaticsPanel();
+	private JPanel contentPane;
+	private JLabel nameLabel;
+	private JLabel gradeLabel;
+	private JButton infoBtn;
+	private JButton outBtn;
+	private JTabbedPane tabbedPane;	
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SuperAdministratorTabbedFrame frame = new SuperAdministratorTabbedFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SuperAdministratorTabbedFrame() {
+		setTitle("\uC790\uB3D9\uCC28 \uADF9\uC7A5");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 980, 600); // Frame 크기
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		nameLabel = new JLabel("\uB2D8 \uD658\uC601\uD569\uB2C8\uB2E4!");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setBounds(439, 10, 99, 31);
+		contentPane.add(nameLabel);
+
+		gradeLabel = new JLabel("\uC9C1\uCC45 : ");
+		gradeLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		gradeLabel.setBounds(550, 10, 116, 31);
+		contentPane.add(gradeLabel);
+
+		infoBtn = new JButton("\uC815\uBCF4\uC218\uC815");
+		infoBtn.setBounds(705, 10, 99, 31);
+		contentPane.add(infoBtn);
+
+		outBtn = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		outBtn.setBounds(816, 10, 99, 31);
+		contentPane.add(outBtn);
+
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(9, 25, 940, 510); // Tab 영역 크기(Panel 크기)
+		contentPane.add(tabbedPane);
+
+		tabbedPane.addTab("지점별 영화예매율 조회", movieReserveStaticPanel);
+		tabbedPane.addTab("지점별 매출조회", salesManagePanel);
+		tabbedPane.addTab("지점별 발주조회", orderManagePanel);
+
+		setVisible(true);
+		
+//		ManagerMainController control = new ManagerMainController(this);
+		
+//		infoBtn.addActionListener(control);
+//		outBtn.addActionListener(control);
+//		tabbedPane.addChangeListener(control);
+
+	}
+}

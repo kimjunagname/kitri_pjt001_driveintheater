@@ -1,0 +1,59 @@
+package com.kitri.project.chart.dto;
+//지점 별 특정 기간의 현금, 마일리지 매출금액
+public class PayChartDto {
+	private int branch_no;
+	private String year;
+	private String month;
+	private String date;
+	private long cash;
+	private long mileage;
+
+	public int getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(int branch_no) {
+		this.branch_no = branch_no;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public long getCash() {
+		return cash;
+	}
+
+	public void setCash(long cash) {
+		this.cash = cash;
+	}
+
+	public long getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(long mileage) {
+		this.mileage = mileage;
+	}
+
+}

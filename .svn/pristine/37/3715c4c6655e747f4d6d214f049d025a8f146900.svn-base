@@ -1,0 +1,66 @@
+CREATE TABLE USER_INFO (
+  USER_NO NUMBER(10) NOT NULL, /* 회원번호 */
+  USER_ID VARCHAR2(30) NOT NULL, /* 아이디 */
+  USER_PWD VARCHAR2(30) NOT NULL, /* 암호 */
+  CARTYPE_NO number(10) NOT NULL, /* 차종번호 */
+  USER_NAME VARCHAR2(30), /* 이름 */
+  USER_EMAIL VARCHAR2(30), /* 이메일 */
+  USER_PHONE VARCHAR2(30) /* 핸드폰 */
+);
+CREATE SEQUENCE USER_NO START WITH 1 INCREMENT BY 1
+NOMAXVALUE NOMINVALUE;
+
+select * from user_info;
+DROP TABLE USER_INFO;
+select * from USER_INFO where USER_ID = 'mama' and USER_PWD = '1234';
+"select * \n"; //선택
+      sql += "from USER_INFO \n"; //프롬 멤버 테이블
+      sql += "where USER_ID = ? and USER_PWD = ?";
+
+
+DROP from USER_INFO;
+
+DROP SEQUENCE USER_NO;
+
+select * from tab;
+DROP TABLE USER_INFO;
+
+c
+
+DELETE FROM USER_INFO WHERE user_id = 'many';
+
+DELETE FROM USER_INFO WHERE USER_no = 10020;
+DELETE FROM seq_USER_NO ;
+DROP TABLE seq_USER_NO;
+
+INSERT into USER_INFO (USER_NO, USER_ID, USER_PWD, CARTYPE_NO,USER_NAME,USER_EMAIL,  USER_PHONE)
+                   VALUES (USER_NO.nextval, 'many', '1234', 1, 'many', 'many@ma.com', '01093384137');
+
+
+commit;
+select * from USER_INFO;
+INSERT into USER_INFO (USER_NO, USER_ID, USER_PWD, CARTYPE_NO,USER_NAME,USER_EMAIL,  USER_PHONE)
+                   VALUES (USER_NO.nextval, 'many', '1234', 1, 'many', 'many@ma.com', '01093384137');
+
+INSERT into USER_INFO (USER_NO, USER_ID, USER_PWD, CARTYPE_NO,USER_NAME,USER_EMAIL,  USER_PHONE)
+                   VALUES (USER_NO.nextval, 'many1', '11234', 1, 'many', 'many@ma.com', '01093384137');
+select * from USER_INFO;
+
+
+select * from USER_INFO;
+
+sql += "select * \n"; //선택
+      sql += "from USER_INFO \n"; //프롬 멤버 테이블
+      sql += "where USER_ID = ? and USER_PWD = ?";
+
+
+select * from EMP_INFO where EMP_ID = 'many' and EMP_PWD = 'many';
+       EMP_PWD
+select * from  USER_INFO;
+select user_id from user_info where user_name = 'many' and user_email = 'many@ma.com';
+select user_pwd from user_info where user_name = 'many' and user_email = 'many@ma.com';
+many
+many@ma.com
+
+select USER_ID, USER_PWD from USER_INFO where USER_ID = 'many' and USER_PWD = '1234';
+ 

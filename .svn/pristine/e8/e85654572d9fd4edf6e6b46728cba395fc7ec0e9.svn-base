@@ -1,0 +1,28 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class EmpMovieMainPanel extends JPanel {
+
+	public JButton editMovieBtn;
+	public JButton registerMovieBtn;
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpMovieMainPanel() {
+		setName("영화관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		editMovieBtn = new JButton("\uC601\uD654 \uBCC0\uACBD \uBC0F \uC0AD\uC81C");
+		editMovieBtn.setBounds(122, 106, 270, 314);
+		add(editMovieBtn);
+		
+		registerMovieBtn = new JButton("\uC601\uD654 \uB4F1\uB85D");
+		registerMovieBtn.setBounds(498, 106, 261, 314);
+		add(registerMovieBtn);
+		
+	}
+}

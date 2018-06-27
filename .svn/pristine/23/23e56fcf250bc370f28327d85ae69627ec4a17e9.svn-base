@@ -1,0 +1,36 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class EmpWorkMainPanel extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpWorkMainPanel() {
+		setName("근태관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		JButton btnNewButton = new JButton("출근");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(67, 73, 248, 361);
+		add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("퇴근");
+		btnNewButton_1.setBounds(361, 73, 248, 361);
+		add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("출퇴근 현황");
+		btnNewButton_2.setBounds(656, 73, 232, 361);
+		add(btnNewButton_2);
+
+	}
+
+}

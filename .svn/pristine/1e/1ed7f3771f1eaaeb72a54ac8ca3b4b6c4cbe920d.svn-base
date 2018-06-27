@@ -1,0 +1,119 @@
+package com.kitri.project.user.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import com.kitri.project.sql.CarSql;
+import com.kitri.project.user.dto.UserDto;
+
+public class UserDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	Statement stmt;
+	ResultSet rs = null;
+	CarSql carsql = null;
+	UserDto userDto = null;
+	List list;
+
+	public int num = 0;
+
+	public UserDao() {
+		carsql = new CarSql();
+	}
+
+	public UserDto select(UserDto user) {
+		return null;
+	}
+
+	public int register(UserDto userDto) {
+		return 0;
+	}
+
+
+
+	/*
+	 * public void insert_user() { String sql=
+	 * "INSERT INTO member_info VALUES(user_no_seq.nexval, ?, ?, ?, ?, ?, ?, ?)";
+	 * 
+	 * try { Connection con= carsql.connect(); //conn= drivemanager pstmt=
+	 * con.prepareStatement(sql); pstmt.setString(1, x); pstmt.setString(2, x);
+	 * pstmt.setString(3, x); pstmt.setString(4, x); pstmt.setString(5, x);
+	 * pstmt.setString(6, x); pstmt.setString(7, x); //받아온 변수 입력(user_no는 자동입력)
+	 * 
+	 * pstmt.executeUpdate(); } catch (Exception e) { } }
+	 */
+
+	//carType 타입 잠시 String을 변환
+//	public int modifyUserInfo(String id, String pwd, int carType, String name, String year, String month, String day,
+	 public int modifyUserInfo(String id, String pwd, String carType, String name, String year, String month, String day,    
+	 String email, String phone) {
+		// 애초에 패스워드 두번 입력한게 맞지 않으면 보내지 않는다.. service단에서 처리
+		// String sql= "UPDATE member_info ";
+		// sql+= "SET user_pwd= ?, user_cartype= ?, user_name= ?, ";
+		// sql+= "user_birth= ?, user_email= ?, user phone= ? ";
+		// sql+= "WHERE id= ?";
+
+		String sql = "UPDARE user_info SET user_pwd= ? WHERE user_id= ?";
+
+		try {
+			con = carsql.connect();
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+
+			// pstmt.setString(1, pwd);
+			// pstmt.setInt(2, carType);
+			// pstmt.setString(3, name);
+			// pstmt.setString(4, birth);
+			// pstmt.setString(5, email);
+			// pstmt.setInt(6, phone);
+			// pstmt.setString(7, id);
+			//
+			// num = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			carsql.close(pstmt, con);
+		}
+
+		return num;
+	}
+
+	public List selectModifyUserInfo() {
+		// UserDto userDto; // 로그인된 사람의 Dto를 가져와야함
+		try {
+			con = carsql.connect();
+			String sql = "select * from user_info";
+			// String sql= "select * from user_info where 조건";
+			// pstmt= con.preparedStatement(sql);
+			// psmt.setString(1, id); //id는 받아온 값
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				list = new ArrayList();
+//				String no = rs.getString("user_no");
+				String id = rs.getString("user_id");
+				// int cartype_no = rs.getInt("cartype_no");
+				String name = rs.getString("user_name");
+			//	String birth = rs.getString("user_birth");  - 생일 삭제
+				String email = rs.getString("user_email");
+
+//				list.add(no);
+				list.add(id); //1
+				// list.add(cartype_no);
+				list.add(name); //2
+			//	list.add(birth); //3 - 생일 삭제
+				list.add(email); //4
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+}

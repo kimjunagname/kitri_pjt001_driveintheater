@@ -1,0 +1,59 @@
+package com.kitri.project.emp.dto;
+
+public class EmpTimeMngDto {
+	private int emp_no;
+	private String emp_name;
+	private String emp_intime;
+	private String emp_outtime;
+	private String job_name;
+	private String branch_name;
+
+	public int getEmp_no() {
+		return emp_no;
+	}
+
+	public void setEmp_no(int emp_no) {
+		this.emp_no = emp_no;
+	}
+
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
+	public String getEmp_intime() {
+		return emp_intime;
+	}
+
+	public void setEmp_intime(String emp_intime) {
+		this.emp_intime = emp_intime;
+	}
+
+	public String getEmp_outtime() {
+		return emp_outtime;
+	}
+
+	public void setEmp_outtime(String emp_outtime) {
+		this.emp_outtime = emp_outtime;
+	}
+
+	public String getJob_name() {
+		return job_name;
+	}
+
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
+	}
+
+	public String getBranch_name() {
+		return branch_name;
+	}
+
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
+	}
+
+}

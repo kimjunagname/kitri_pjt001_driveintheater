@@ -1,0 +1,39 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
+public class UserLoginPWDLookPanel2 extends JPanel {
+  public JTextField pwdTextP4_2;//idtext
+  public JButton okButtenP4_2; //조회 butten
+  
+  /**
+   * Create the panel.
+   */
+  public UserLoginPWDLookPanel2() {
+    setLayout(null);
+       
+    JLabel lblPwd = new JLabel("PWD 조회");
+    lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
+    lblPwd.setFont(new Font("굴림", Font.BOLD, 30));
+    lblPwd.setBounds(117, 109, 173, 30);
+    add(lblPwd);
+    
+    pwdTextP4_2 = new JTextField();  //idtext
+    pwdTextP4_2.setFont(new Font("굴림", Font.PLAIN, 25));//idtext
+    pwdTextP4_2.setText("PWD");
+    pwdTextP4_2.setColumns(10);
+    pwdTextP4_2.setBounds(85, 247, 258, 50);
+    add(pwdTextP4_2);
+    
+    okButtenP4_2 = new JButton("확인"); //조회 butten
+    okButtenP4_2.setBounds(285, 474, 82, 30); //조회 butten
+    add(okButtenP4_2);
+    
+  }
+  
+}

@@ -1,0 +1,27 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class EmpTimeManagePanel extends JPanel {
+	public JScrollPane scrollPane;
+	public JTextArea textArea;
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpTimeManagePanel() {
+		setName("근태관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(60, 75, 820, 360);
+		add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+
+	}
+}

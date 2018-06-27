@@ -1,0 +1,42 @@
+package com.kitri.project.chart.dto;
+
+//지점 별 현금, 마일리지 매출금액
+public class PayChartDto {
+	private int branch_no;
+	private long ticket_paytotal;
+	private long ticket_paycash;
+	private long ticket_paymileage;
+
+	public int getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(int branch_no) {
+		this.branch_no = branch_no;
+	}
+
+	public long getTicket_paytotal() {
+		return ticket_paytotal;
+	}
+
+	public void setTicket_paytotal(long ticket_paytotal) {
+		this.ticket_paytotal = ticket_paytotal;
+	}
+
+	public long getTicket_paycash() {
+		return ticket_paycash;
+	}
+
+	public void setTicket_paycash(long ticket_paycash) {
+		this.ticket_paycash = ticket_paycash;
+	}
+
+	public long getTicket_paymileage() {
+		return ticket_paymileage;
+	}
+
+	public void setTicket_paymileage(long ticket_paymileage) {
+		this.ticket_paymileage = ticket_paymileage;
+	}
+
+}

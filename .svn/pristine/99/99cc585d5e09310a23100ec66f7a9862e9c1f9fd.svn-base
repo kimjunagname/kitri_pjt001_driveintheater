@@ -1,0 +1,124 @@
+package com.kitri.project.user.service;
+
+import java.sql.*;
+import com.kitri.project.sql.CarSql;
+import com.kitri.project.user.dto.UserDto;
+
+public class UserDao {
+  Connection con = null;
+  PreparedStatement pstmt = null;
+  ResultSet rs = null;
+  CarSql carsql= null;
+  UserDto userDto = null;
+  
+  
+  public int num= 0;
+  
+  public UserDao() {
+    carsql= new CarSql();
+  }
+  
+  public UserDto select(UserDto user) {
+    return null;
+  }
+  
+  
+  public int register(UserDto userDto) {
+    return 0;
+  }
+  
+  
+  //login
+  public UserDto login(String id, String pass) {
+//  public UserDto login(UserDto userDto) {
+    System.out.println("Dto"+id + "" + pass);
+    //UserDto userDto
+       try {
+      con = carsql.connect();
+      // DriverManager 객체로부터 Connection 객체를 얻어온다.
+      String sql = ""; //string sql 변수 선언
+ //     sql += "select * \n"; //선택
+   //   sql += "from USER_INFO \n"; //프롬 멤버 테이블
+     // sql += "where USER_ID = ? and USER_PWD" //조건 id, passwd 값 위치
+       //   + " = ?";
+      sql += "select * \n"; //선택
+      sql += "from EMP_INFO \n"; //프롬 멤버 테이블
+      sql += "where EMP_ID = ? and EMP_PWD" //조건 id, passwd 값 위치
+          + " = ?";
+      pstmt = con.prepareStatement(sql); //prepareStatement에서 해당 sql을 미리 컴파일한다.
+      System.out.println("UserDao id: " + id + "\t pass : " + pass);
+      pstmt.setString(1, id); //1값에 id를 
+      pstmt.setString(2, pass);
+      rs = pstmt.executeQuery();  // 쿼리를 실행하고 결과를 ResultSet 객체에 담는다.
+     
+      
+      if(rs.next()) {
+        // 결과를 한 행씩 돌아가면서 가져온다.
+        userDto = new UserDto(); //MemberDto 의 memberDto 객체 생성
+        userDto.setUser_id(rs.getString("id")); //memberDto에 id 값 가져오기
+        userDto.setUser_name(rs.getString("name"));  //memberDto에 name 값 가져오기
+      }  
+
+    } catch (SQLException e) {// 예외가 발생하면 예외 상황을 처리한다.
+      e.printStackTrace();
+    } finally {
+      carsql.close(rs, pstmt, con);
+    }
+
+    return userDto;  //return memberDto;반환
+
+  }
+  
+  /*
+  public void insert_user() {
+    String sql= "INSERT INTO member_info VALUES(user_no_seq.nexval, ?, ?, ?, ?, ?, ?, ?)";
+    
+    try {
+      Connection con= carsql.connect();
+      //conn= drivemanager
+      pstmt= con.prepareStatement(sql);
+      pstmt.setString(1, x);
+      pstmt.setString(2, x);
+      pstmt.setString(3, x);
+      pstmt.setString(4, x);
+      pstmt.setString(5, x);
+      pstmt.setString(6, x);
+      pstmt.setString(7, x);
+      //받아온 변수 입력(user_no는 자동입력)
+      
+      pstmt.executeUpdate();
+    } catch (Exception e) {
+    }
+  }*/
+  
+  public int modifyUserInfo(String id, String pwd, int carType, String name, String birth, String email, int phone) {
+    //애초에 패스워드 두번 입력한게 맞지 않으면 보내지 않는다.. service단에서 처리
+    String sql= "UPDATE member_info ";
+    sql+= "SET user_pwd= ?, user_cartype= ?, user_name= ?, ";
+    sql+= "user_birth= ?, user_email= ?, user phone= ? ";
+    sql+= "WHERE id= ?";
+    
+    try {
+      con= carsql.connect();
+      pstmt= con.prepareStatement(sql);
+      pstmt.setString(1, pwd);
+      pstmt.setInt(2, carType);
+      pstmt.setString(3, name);
+      pstmt.setString(4, birth);
+      pstmt.setString(5, email);
+      pstmt.setInt(6, phone);
+      pstmt.setString(7, id);
+      
+      num = pstmt.executeUpdate();
+      
+    } catch(Exception e) {
+      e.printStackTrace();
+    } finally {
+      carsql.close(pstmt, con);
+    }
+    
+    return num;
+  }
+  
+
+}

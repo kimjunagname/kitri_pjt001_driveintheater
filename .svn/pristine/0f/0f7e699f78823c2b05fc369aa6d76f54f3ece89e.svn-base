@@ -1,0 +1,101 @@
+package com.kitri.project.emp.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import org.jfree.chart.ChartPanel;
+
+import com.kitri.project.chart.MyChart;
+import com.kitri.project.chart.dto.PayChartDto;
+import com.kitri.project.chart.service.PayChartService;
+import com.kitri.project.emp.view.EmpMain;
+
+public class EmpChartController implements ActionListener {
+	EmpMain empMain;
+	PayChartService pService;
+	
+	public EmpChartController(EmpMain empMain) {
+		this.empMain = empMain;
+		pService = new PayChartService();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+
+		if (obj == empMain.tabFrame.branchMainPanel.salesBtn || obj == empMain.tabFrame.chartPanel.yearBtn) {
+			empMain.tabFrame.chartPanel.panel.removeAll();
+			System.out.println("E_C_Controller 매출버튼");
+			String[] categoryStr = {"년도", "총 매출금액", "현금매출", "마일리지매출"};
+//			String[] valueStr = {"2018"};
+//			List<PayChartDto> list = pService.getChartByYear(EmpInfoController.login.getBranch_no(), valueStr[0]);
+			List<PayChartDto> list = pService.getAllYearsPayChartByBranchNo(EmpInfoController.login.getBranch_no());		//해당 지점 모든 년단위 매출 
+			List<Object> objList = new ArrayList<>();
+			int len = list.size();
+			for (int i = 0; i < len; i++) {
+				objList.add((Object)list.get(i));
+			}
+			String[] valueStr = new String[len];
+			for (int i = 0; i < valueStr.length; i++) {
+				valueStr[i] = list.get(i).getTerm().substring(0, 4);
+			}
+			
+			MyChart mc = new MyChart("연간 매출 차트", "년", "매출금액", categoryStr, valueStr, objList);
+			ChartPanel myChartP = new ChartPanel(mc.barChart);
+			myChartP.setPreferredSize(new java.awt.Dimension(890, 250));
+			empMain.tabFrame.chartPanel.panel.add(myChartP);
+			
+//			String[] columnNames = new String[]{"지점명", "총 매출금액", "현금매출", "마일리지매출"};
+//			DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+			DefaultTableModel model = new DefaultTableModel(categoryStr, 0);
+			for(int i=0; i<len; i++) {
+				Object[] data = {valueStr[i], list.get(i).getTicket_paytotal(), list.get(i).getTicket_paycash(), list.get(i).getTicket_paymileage()};
+				model.addRow(data);
+			}
+			empMain.tabFrame.chartPanel.table.setModel(model);
+			empMain.tabFrame.chartPanel.scrollPane.setViewportView(empMain.tabFrame.chartPanel.table);
+			empMain.tabFrame.card.show(empMain.tabFrame.branchTabPanel, "chartPanel");
+//			년간 랭킹 출력
+		} else if (obj == empMain.tabFrame.branchMainPanel.movieRankBtn) {
+			System.out.println("E_C_Controller 예매율버튼");
+		/*} else if (obj == empMain.tabFrame.chartPanel.yearBtn) {
+			System.out.println("E_C_Controller 년버튼");
+		*/	
+			//TODO 년간 차트 데이터 세팅
+		} else if (obj == empMain.tabFrame.chartPanel.monthBtn) {
+			empMain.tabFrame.chartPanel.panel.removeAll();
+			System.out.println("E_C_Controller 월버튼");
+//			TODO 월간 차트 데이터 세팅
+			String[] categoryStr = {"월", "총 매출금액", "현금매출", "마일리지매출"};
+			List<PayChartDto> list = pService.getAllMonthsPayChartByBranchNo(EmpInfoController.login.getBranch_no());		//해당 지점 모든 월단위 매출 
+			List<Object> objList = new ArrayList<>();
+			int len = list.size();
+			for (int i = 0; i < len; i++) {
+				objList.add((Object)list.get(i));
+			}
+			String[] valueStr = new String[len];
+			for (int i = 0; i < valueStr.length; i++) {
+				valueStr[i] = list.get(i).getTerm().substring(0, 7);
+			}
+			
+			MyChart monthChart = new MyChart("월간 매출 차트", "월", "매출금액", categoryStr, valueStr, objList);
+			ChartPanel myMonthChartP = new ChartPanel(monthChart.barChart);
+			myMonthChartP.setPreferredSize(new java.awt.Dimension(890, 250));
+			empMain.tabFrame.chartPanel.panel.add(myMonthChartP);
+			
+			DefaultTableModel model = new DefaultTableModel(categoryStr, 0);
+			for(int i=0; i<len; i++) {
+				Object[] data = {valueStr[i], list.get(i).getTicket_paytotal(), list.get(i).getTicket_paycash(), list.get(i).getTicket_paymileage()};
+				model.addRow(data);
+			}
+			empMain.tabFrame.chartPanel.table.setModel(model);
+			empMain.tabFrame.chartPanel.scrollPane.setViewportView(empMain.tabFrame.chartPanel.table);
+			empMain.tabFrame.card.show(empMain.tabFrame.branchTabPanel, "chartPanel");
+		}
+	}
+
+}

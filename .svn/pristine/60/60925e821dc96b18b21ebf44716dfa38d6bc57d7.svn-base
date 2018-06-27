@@ -1,0 +1,32 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class EmpTicketingMainPanel extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpTicketingMainPanel() {
+		setName("예매관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		JButton btnNewButton = new JButton("예매");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(112, 67, 305, 345);
+		add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("예매 취소");
+		btnNewButton_1.setBounds(473, 67, 305, 339);
+		add(btnNewButton_1);
+
+	}
+
+}

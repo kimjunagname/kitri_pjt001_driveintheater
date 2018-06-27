@@ -1,0 +1,46 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class EmpBranchMainPanel3_Temp extends JPanel {
+	public JButton salesBtn;
+	public JButton movieRankBtn;
+	public JButton btnNewButton;
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpBranchMainPanel3_Temp() {
+		setName("지점관리");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		salesBtn = new JButton("\uB9E4\uCD9C");
+		salesBtn.setBounds(76, 102, 225, 150);
+		add(salesBtn);
+		
+		movieRankBtn = new JButton("\uC608\uB9E4\uC728");
+		movieRankBtn.setBounds(344, 105, 225, 145);
+		add(movieRankBtn);
+		
+		btnNewButton = new JButton("\uCC28\uC885\uBCC4 \uC601\uD654\uAE08\uC561 \uAD00\uB9AC");
+		btnNewButton.setEnabled(false);
+		btnNewButton.setBounds(600, 282, 225, 150);
+		add(btnNewButton);
+		
+		JButton btnNewButton_3 = new JButton("\uC601\uD654 \uC0C1\uC601\uC2DC\uAC04 \uAD00\uB9AC");
+		btnNewButton_3.setEnabled(false);
+		btnNewButton_3.setBounds(76, 285, 235, 145);
+		add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("\uCC28\uB7C9\uAD00\uB9AC");
+		btnNewButton_4.setEnabled(false);
+		btnNewButton_4.setBounds(344, 285, 225, 145);
+		add(btnNewButton_4);
+
+	}
+
+}

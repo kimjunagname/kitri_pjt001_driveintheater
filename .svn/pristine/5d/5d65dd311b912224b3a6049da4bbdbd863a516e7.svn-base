@@ -1,0 +1,45 @@
+package com.kitri.project.emp.view;
+
+import java.awt.Panel;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartPanel;
+import java.awt.TextArea;
+
+public class EmpChartPanel extends JPanel {
+
+	public JButton yearBtn;
+	public JButton monthBtn;
+	public Panel panel;
+	public ChartPanel chartPanel;
+	public TextArea textArea;
+	/**
+	 * Create the panel.
+	 */
+	public EmpChartPanel() {
+		setName("매출통계");
+		setBounds(0, 0, 940, 510);
+		setLayout(null);
+		
+		yearBtn = new JButton("\uB144");
+		yearBtn.setBounds(806, 15, 51, 37);
+		add(yearBtn);
+		
+		monthBtn = new JButton("\uC6D4");
+		monthBtn.setBounds(872, 15, 51, 37);
+		add(monthBtn);
+		
+		panel = new Panel();
+		panel.setBounds(21, 73, 890, 250);
+		
+
+		add(panel);
+		
+		textArea = new TextArea();
+		textArea.setBounds(21, 345, 891, 155);
+		add(textArea);
+		
+	}
+}

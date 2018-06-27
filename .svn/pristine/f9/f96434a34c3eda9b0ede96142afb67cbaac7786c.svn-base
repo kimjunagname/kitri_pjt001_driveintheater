@@ -1,0 +1,70 @@
+package com.kitri.project.emp.view;
+
+import javax.swing.*;
+
+import com.kitri.project.emp.controller.EmpMainController;
+
+public class EmpMenuTabbedFrame extends JFrame {
+	
+	EmpMovieMainPanel movieMainPanel = new EmpMovieMainPanel();// 생성자를 만들어준다.
+	EmpTicketingMainPanel ticketingMainPanel = new EmpTicketingMainPanel();
+//	EmpStoreMainPanel storeMainPanel = new EmpStoreMainPanel();
+	EmpWorkMainPanel workMainPanel = new EmpWorkMainPanel();
+	EmpBranchMainPanel branchMainPanel = new EmpBranchMainPanel();
+	
+	public JPanel contentPane;
+	public JLabel nameLabel;
+	public JLabel gradeLabel;
+	public JButton infoBtn;
+	public JButton outBtn;
+	public JTabbedPane tabbedPane;
+
+	/**
+	 * Create the frame.
+	 */
+	public EmpMenuTabbedFrame() {
+		setTitle("\uC790\uB3D9\uCC28 \uADF9\uC7A5");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 980, 600); // Frame 크기
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		nameLabel = new JLabel("");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setBounds(439, 10, 116, 31);
+		contentPane.add(nameLabel);
+
+		gradeLabel = new JLabel("");
+		gradeLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		gradeLabel.setBounds(555, 10, 116, 31);
+		contentPane.add(gradeLabel);
+
+		infoBtn = new JButton("\uC815\uBCF4\uC218\uC815");
+		infoBtn.setBounds(705, 10, 99, 31);
+		contentPane.add(infoBtn);
+
+		outBtn = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		outBtn.setBounds(816, 10, 99, 31);
+		contentPane.add(outBtn);
+
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(9, 25, 940, 510); // Tab 영역 크기(Panel 크기)
+		contentPane.add(tabbedPane);
+
+		tabbedPane.addTab("영화관리", movieMainPanel);
+		tabbedPane.addTab("예매관리", ticketingMainPanel);
+//		tabbedPane.addTab("매점관리", storeMainPanel);
+		tabbedPane.addTab("근태관리", workMainPanel);
+		tabbedPane.addTab("지점관리", branchMainPanel);
+
+		setVisible(false);
+		
+//		EmpMainController control = new EmpMainController(this);
+/*
+		infoBtn.addActionListener(control);
+		outBtn.addActionListener(control);
+		tabbedPane.addChangeListener(control);
+*/		
+	}
+}

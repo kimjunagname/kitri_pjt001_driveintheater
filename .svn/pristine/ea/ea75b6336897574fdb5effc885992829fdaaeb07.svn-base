@@ -1,0 +1,50 @@
+package com.kitri.project.chart.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kitri.project.chart.dto.PayChartDto;
+import com.kitri.project.sql.CarSql;
+
+public class PayChartDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public PayChartDao() {
+		myCon = new CarSql();
+	}
+
+	//TODO selectByBranchNo 지점별 영화 매출 통계
+	public List<PayChartDto> selectByBranchNo(int branch_no){
+		List<PayChartDto> list = null;
+		try {
+			list = new ArrayList<>();
+			con = myCon.connect();
+			String sql = "select branch_no, ticket_paytotal, ticket_paycash, ticket_paymileage, from TICKET_PAY where branch_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, branch_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PayChartDto dto = new PayChartDto();
+				dto.setBranch_no(rs.getInt("branch_no"));
+				dto.setTicket_paytotal(rs.getLong("ticket_paytotal"));
+				dto.setTicket_paycash(rs.getLong("ticket_paycash"));
+				dto.setTicket_paymileage(rs.getLong("ticket_paymileage"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			myCon.close(rs, pstmt, con);
+			return list;
+		}
+	}
+	
+	//TODO selectByPeriod 기간별 영화 매출 통계
+//	List<PayChartDto> selectByPeriod(String date)
+	
+	
+}

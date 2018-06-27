@@ -1,0 +1,175 @@
+package com.kitri.project.user.controller;
+
+import java.awt.event.*;
+
+import javax.swing.*;
+
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.service.UserService;
+import com.kitri.project.user.view.UserLogin;
+//ActionListener를 받기 위해 ActionListener 상속
+public class UserLoginController implements ActionListener {
+  
+  //UserLogin 변수 선언
+  public UserLogin login = null;
+  //UserService 변수 선언
+  public UserService userService = null;
+  public UserDto userDto = null;
+  public String id;
+  public String pass;
+  public UserLoginController(UserLogin login) {
+    //UserLogin 뷰와 UserLoginController 연결
+    this.login = login;
+    userService = new UserService(); //userservice와 연결
+    }
+    
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    // UserLogin 버튼 액션시 행동 설정
+    Object ob = e.getSource();
+    if(ob == login.p1.joinButtonp1) {//회원가입 폼 이동
+      System.out.println("회원 가입 버튼 클릭");
+      login.card.show(login.panel, "joinView2");
+    }else if(ob == login.p1.loginButtonp1) {//UserMenu 이동 
+      
+      System.out.println("로그인 버튼 클릭");
+      id = login.p1.idintextp1.getText().trim();
+      pass = new String(login.p1.pwdintextp1.getPassword());
+      System.out.println("controller >>>>>>>> " + id + "                  " + pass); //controller 객체가 가지온 id, pwd 확인하기
+      userDto = userService.login(id, pass);
+      
+      if(userDto != null) //로그인 성공 -- memberDto에 변수가 없으면(디비에서 값을 제대로 가져온 경우)
+      JOptionPane.showMessageDialog(login, "로그인 성공", "정보", JOptionPane.INFORMATION_MESSAGE);
+      login.userMenuframe.setVisible(true);
+      login.setVisible(false);
+      
+
+    } else if(ob == login.p1.idSuchButtenp1) {//id 이동
+      login.card.show(login.panel, "idsuchView3");
+      System.out.println("ID 찾기 버튼 클릭");
+    }else if(ob == login.p1.pwdSuchButtenp1) {//pwd 이동
+      login.card.show(login.panel, "pwdsuchView4");
+      System.out.println("PWD 찾기 버튼 클릭");  
+///////////////////////////////////////////////////////////P2
+    }else if(ob == login.p2.idFP2) {//ID입력 TEXT 창
+
+      
+    }else if(ob == login.p2.pwsFP2) {//password Text
+
+      
+    }else if(ob == login.p2.re_pwdFP2) {//re_password Text
+
+      
+    }else if(ob == login.p2.choiceP2) {//차종 선택????? 확인필요
+
+      
+    }else if(ob == login.p2.nameTextFieldP2) {//이름 Text
+
+      
+    }else if(ob == login.p2.birthFP2) {//BIRTH Text
+
+      
+    }else if(ob == login.p2.emailFP2) {//Email Text
+
+      
+    }else if(ob == login.p2.phoneFP2) {//PHONE text
+
+      
+    }else if(ob == login.p2.backBP2) {//뒤로가기 버튼
+
+//      JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.", "BACK", JOptionPane.WARNING_MESSAGE);
+      UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+      userLogin.setVisible(true); //로그인 화면 보여주기 설정
+      login.setVisible(false); //회원 가입 화면 닫기
+      
+    }else if(ob == login.p2.idCheackButtonP2) {//ID 중복확인 버튼
+
+      
+    }else if(ob == login.p2.emailCheackButtonP2) {//email 중복 확인 버튼
+
+      
+    }else if(ob == login.p2.cancelButtonP2) {//취소버튼
+//      JOptionPane.showMessageDialog(login.userLoginFrame, "취소 버튼을 클릭 하셨습니다.", "취소", JOptionPane.WARNING_MESSAGE);
+      UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+      userLogin.setVisible(true); //로그인 화면 보여주기 설정
+      login.setVisible(false); //회원 가입 화면 닫기
+    }else if(ob == login.p2.memberJoinP2) {//가입 버튼
+    JOptionPane.showMessageDialog(login.userLoginFrame, "가입 버튼을 클릭 하셨습니다.", "로그인 안내", JOptionPane.WARNING_MESSAGE);
+    UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+    userLogin.setVisible(true); //로그인 화면 보여주기 설정
+    login.setVisible(false); //회원 가입 화면 닫기
+      
+    }
+///////////////////////////////////////////////////////////P3
+      else if(ob == login.p3.emailTextP3) {//email text
+
+      
+    }else if(ob == login.p3.nameTextP3) {//name text
+
+      
+    }else if(ob == login.p3.cancelButtenP3) {//취소 버튼
+
+//      JOptionPane.showMessageDialog(login.userLoginFrame, "취소 버튼을 클릭 하셨습니다.", "상태 안내", JOptionPane.INFORMATION_MESSAGE);
+      UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+      userLogin.setVisible(true); //로그인 화면 보여주기 설정
+      login.setVisible(false); //회원 가입 화면 닫기
+      
+      
+    }else if(ob == login.p3.suchButtonP3) {//조회 버튼
+
+      login.card.show(login.panel, "idsuchResultView3_2");
+      
+    }else if(ob == login.p3.backBtnP3) {//Iback 버튼
+//      JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.", "상태 안내", JOptionPane.INFORMATION_MESSAGE);
+      UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+      userLogin.setVisible(true); //로그인 화면 보여주기 설정
+      login.setVisible(false); //회원 가입 화면 닫기
+      
+    }
+///////////////////////////////////////////////////////////P4
+      else if(ob == login.p4.emailTextP4) {//email text
+
+      
+    }else if(ob == login.p4.idTextP4) {//idtext
+
+      
+    }else if(ob == login.p4.backButtonP4) {//back butten
+//    JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.", "상태 안내", JOptionPane.INFORMATION_MESSAGE);
+    UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+    userLogin.setVisible(true); //로그인 화면 보여주기 설정
+    login.setVisible(false); //회원 가입 화면 닫기
+      
+    }else if(ob == login.p4.cancelButtonp4) {//취소 butten
+    JOptionPane.showMessageDialog(login.userLoginFrame, "취소 버튼을 클릭 하셨습니다.", "취소", JOptionPane.WARNING_MESSAGE);
+    UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+    userLogin.setVisible(true); //로그인 화면 보여주기 설정
+    login.setVisible(false); //회원 가입 화면 닫기
+      
+    }else if(ob == login.p4.suchButtenP4) {//조회 butten
+      
+     login.card.show(login.panel, "pwdsuchResultView4_2");
+      
+    }
+
+///////////////////////////////////////////////////////////P3_2
+     else if(ob == login.p3_2.idSuchTextP3_2) {// id text
+
+    }else if(ob == login.p3_2.okButtenP3_2) {//확인 버튼
+//    JOptionPane.showMessageDialog(login.userLoginFrame, "확인 버튼을 클릭 하셨습니다.", "InFo", JOptionPane.WARNING_MESSAGE);
+    UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+    userLogin.setVisible(true); //로그인 화면 보여주기 설정
+    login.setVisible(false); //회원 가입 화면 닫기
+    }
+    
+///////////////////////////////////////////////////////////P4_2
+    else if(ob == login.p4_2.pwdTextP4_2) {//pwdtext
+
+    }else if(ob == login.p4_2.okButtenP4_2) { //확인 butten
+    UserLogin userLogin= new UserLogin(); //직접 userLogin 객체 생성
+    userLogin.setVisible(true); //로그인 화면 보여주기 설정
+    login.setVisible(false); //회원 가입 화면 닫기
+    }
+  }
+}
+

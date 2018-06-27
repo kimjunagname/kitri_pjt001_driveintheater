@@ -1,0 +1,39 @@
+package com.kitri.project.emp.service;
+
+import java.sql.*;
+
+import com.kitri.project.emp.dto.EmpInfoDto;
+import com.kitri.project.sql.CarSql;
+
+public class EmpLoginDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public EmpLoginDao() {
+		myCon = new CarSql();
+	}
+	
+	public int getJobMane(String id) {
+		int job_no= 0;
+		try {
+			con = myCon.connect();
+			//SELECT job_no FROM emp_info where emp_no= 1;
+			String sql= "SELECT job_no FROM emp_info WHERE emp_id= ?";
+			pstmt= con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				job_no= rs.getInt("job_no");
+			}
+		} catch (SQLException e) {                                                                                                                                                                                                                
+			e.printStackTrace();
+		} finally {
+			myCon.close(rs, pstmt, con);
+		}
+		
+		return job_no;
+	}
+}

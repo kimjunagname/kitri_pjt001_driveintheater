@@ -1,0 +1,81 @@
+package com.kitri.project.user.service;
+
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.branch.service.BranchService;
+import com.kitri.project.cartype.CarTypeService;
+import com.kitri.project.user.controller.UserLoginController;
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+public class UserService {
+	public UserDao dao;
+	public UserMenu menu;
+	public UserService register;
+	public UserDto userDto;
+	public UserLoginController userLoginController;
+	// UserLogin 변수 선언
+	public UserLogin login;
+	BranchService bservice = new BranchService();
+	CarTypeService cservice = new CarTypeService();
+
+	
+
+	
+	public UserService(UserMenu menu) {
+		this.menu= menu;
+		dao = new UserDao();
+		
+		
+		
+		List<String> list = bservice.getBranchNames();
+		int len = list.size();
+		for (int i = 0; i < len; i++) {
+			menu.p2_1.choice.add(list.get(i));
+			//choice값을 select로 가져와서 db랑 연동할 때 1 더해줘야함
+			System.out.println(list.get(i));
+		}
+		
+		//영화예매2 초이스 오브젝트
+		// List<String> list2= cservice.selectCarTypeNameAll();
+		// len= list2.size();
+		// for (int i = 0; i < len; i++) {
+		// menu.p2_2.cartypeC.add(list.get(i));
+		// }
+		
+		// 영화예매 수량
+		for (int i = 1; i <= 10; i++) {
+			menu.p2_2.quentityC.add(i+"");
+		}
+		
+	}
+
+	public int register(UserDto userDto) {
+		return dao.register(userDto);
+	}
+
+	public int modifyUserInfo(String id, String pwd, String re_pwd, int carType, String name, String birth,
+			String email, int phone) {
+		if (pwd != re_pwd) // 패스워드가 맞지 않는다면
+			JOptionPane.showMessageDialog(menu.panel, "비밀번호가 맞지 않습니다");
+		else
+			dao.modifyUserInfo(id, pwd, carType, name, birth, email, phone);
+		return dao.num;
+	}
+
+  
+	public UserDto login(String id, String pass) { //dao의 login 메소드
+		System.out.println("유저 서비스  호출 id = " + id + "" + pass);
+		if (id.isEmpty() == true || pass.isEmpty() == true) {
+			System.out.println("널이냐?");
+			// System.out.println("service >>>>>>>> " + id + " " + pass); //controller 객체가
+			// 가지온 id, pwd 확인하기
+			return null;
+		}
+		return dao.login(id, pass);
+		// return dao.login(userDto);
+	}
+}

@@ -1,0 +1,38 @@
+package com.kitri.project.calendar;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class MakeCalendar {
+<<<<<<< .mine
+	public static final Calendar cal = new GregorianCalendar();
+||||||| .r165
+=======
+	public Calendar cal;
+>>>>>>> .r171
+
+	public MakeCalendar() {
+//		this.cal = new GregorianCalendar();
+	}
+	
+<<<<<<< .mine
+	public static int calcEndDate(String year, String month) {
+//		System.out.println(year);
+//		System.out.println(month);
+		System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		cal.set(Integer.parseInt(year), Integer.parseInt(month), 1);
+		return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+||||||| .r165
+=======
+	public int calcEndDate(String year, String month) {
+		int y = Integer.parseInt(year);
+		int m = Integer.parseInt(month); 
+		cal.set(y, m-1, 1);
+		int d = cal.getActualMaximum(Calendar.DAY_OF_MONTH); 
+		System.out.println(y+" / " + m + " / " + d);
+		System.out.println("calc d : " + d);
+		return d;
+>>>>>>> .r171
+	}
+	
+}

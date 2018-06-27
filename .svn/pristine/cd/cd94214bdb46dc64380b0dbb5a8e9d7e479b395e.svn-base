@@ -1,0 +1,35 @@
+package com.kitri.project.superadmin.service;
+
+import java.sql.*;
+
+import com.kitri.project.sql.CarSql;
+
+public class SuperAdminDao {
+	CarSql myCon;
+	Connection con;
+	PreparedStatement pstmt;
+	
+	public SuperAdminDao() {
+		myCon = new CarSql();
+	}
+	
+	public int regieterMovie(String name, int runtime, String genre, String story, String actor) {
+		int num = 0;
+		try {
+			con = myCon.connect();
+			String sql = "insert into movie_info values(?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, genre);
+			pstmt.setString(3, story);
+			pstmt.setString(4, actor);
+			pstmt.setInt(5, runtime);
+			num = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			myCon.close(pstmt, con);
+		}
+		return num;
+	}
+}

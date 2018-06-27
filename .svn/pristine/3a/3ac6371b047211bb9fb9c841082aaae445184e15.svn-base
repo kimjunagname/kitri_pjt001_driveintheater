@@ -1,0 +1,72 @@
+select * from car;
+select * from tab;
+select * from EMP_INFO;
+
+/*삭제*/
+DROP INDEX PK_USER_INFO;
+
+/* 사용자회원정보 */
+DROP TABLE USER_INFO 
+  CASCADE CONSTRAINTS;
+
+
+ALTER TABLE EMP_INFO
+  DROP
+    CONSTRAINT FK_BRANCH_TO_EMP_INFO
+    CASCADE;
+
+/*회원 멤버 등록*/
+
+insert into USER_INFO (USER_NO, USER_ID, USER_PWD, CARTYPE_NO, USER_NAME,
+                    USER_BIRTH, USER_EMAIL, USER_PHONE) 
+                    values (1, 'many', '1234', 1, 'many', 
+                    SYSDATE , 'many@ma.com', 01093384137);
+  
+                    
+/*조회*/
+select * from USER_INFO;
+                    
+/*
+ * many
+ * 1234
+ * 
+ * */
+  
+/*저장*/
+    commit;
+    
+
+/*테이블 생성*/
+/* 사용자회원정보 */
+CREATE TABLE USER_INFO (
+  USER_NO NUMBER(10) NOT NULL, /* 회원번호 */
+  USER_ID VARCHAR2(30) NOT NULL, /* 아이디 */
+  USER_PWD VARCHAR2(30) NOT NULL, /* 암호 */
+  CARTYPE_NO NUMBER(10) NOT NULL, /* 차종번호 */
+  USER_NAME VARCHAR2(30), /* 이름 */
+  USER_BIRTH DATE NOT NULL, /* 생일 */
+  USER_EMAIL VARCHAR2(30), /* 이메일 */
+  USER_PHONE NUMBER(10) /* 핸드폰 */
+);
+
+COMMENT ON TABLE USER_INFO IS '사용자회원정보';
+COMMENT ON COLUMN USER_INFO.USER_NO IS '회원번호';
+COMMENT ON COLUMN USER_INFO.USER_ID IS '아이디';
+COMMENT ON COLUMN USER_INFO.USER_PWD IS '암호';
+COMMENT ON COLUMN USER_INFO.CARTYPE_NO IS '차종번호';
+COMMENT ON COLUMN USER_INFO.USER_NAME IS '이름';
+COMMENT ON COLUMN USER_INFO.USER_BIRTH IS '생일';
+COMMENT ON COLUMN USER_INFO.USER_EMAIL IS '이메일';
+COMMENT ON COLUMN USER_INFO.USER_PHONE IS '핸드폰';
+
+CREATE UNIQUE INDEX PK_USER_INFO
+  ON USER_INFO (
+    USER_NO ASC
+  );
+
+ALTER TABLE USER_INFO
+  ADD
+    CONSTRAINT PK_USER_INFO
+    PRIMARY KEY (
+      USER_NO
+    );

@@ -1,0 +1,66 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+import com.kitri.project.branch.service.BranchService;
+import com.kitri.project.movie.service.UserMovieDao;
+
+import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.JSlider;
+import javax.swing.JList;
+import java.awt.List;
+import javax.swing.JDesktopPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Choice;
+
+public class UserMovieReservationPanel1_2 extends JPanel {
+	UserMovieDao dao;
+	public JLabel rateL;
+	public JLabel posterL;
+	public JLabel titleL;
+	public JSlider slider;
+	/**
+	 * Create the panel.
+	 */
+	public UserMovieReservationPanel1_2() {
+	  setBackground(Color.WHITE);
+		dao= new UserMovieDao();
+		setLayout(null);
+
+		rateL = new JLabel("\uC608\uB9E4\uC728 0.00%");
+		rateL.setHorizontalAlignment(SwingConstants.CENTER);
+		rateL.setFont(new Font("굴림", Font.PLAIN, 13));
+		rateL.setBounds(222, 226, 93, 24);
+		add(rateL);
+
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(175, 72, 1, 1);
+		add(desktopPane);
+
+		titleL = new JLabel("\uC601\uD654\uC774\uB984\uC601\uD654\uC774\uB984");
+		titleL.setHorizontalAlignment(SwingConstants.CENTER);
+		titleL.setFont(new Font("굴림", Font.BOLD, 20));
+		titleL.setBounds(28, 226, 168, 24);
+		add(titleL);
+		
+		int num= dao.getBranchMovieCount(2); //2번 지점
+//		System.out.println("2_1 num : "+num);
+		slider = new JSlider(1, 1, 1); //지점영화개수 가져오기
+		slider.setSnapToTicks(true);
+		slider.setPaintTicks(true);
+		slider.setMinorTickSpacing(1);
+		slider.setBounds(32, 262, 283, 23);
+		add(slider);
+		
+		posterL = new JLabel("");
+		posterL.setBounds(44, 10, 250, 210);
+		add(posterL);
+
+	}
+}

@@ -1,0 +1,25 @@
+package com.kitri.project.movie.service;
+
+import java.sql.*;
+import java.util.List;
+
+import com.kitri.project.movie.dto.MovieDto;
+import com.kitri.project.sql.CarSql;
+
+public class UserMovieDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public UserMovieDao() {
+		myCon = new CarSql();
+	}
+
+
+//	TODO user용 영화 조회 메소드		- 사용자측 영화예매 시 리스트
+	public List<MovieDto> selectAllMovieByUser(){
+		return null;
+	}
+
+}

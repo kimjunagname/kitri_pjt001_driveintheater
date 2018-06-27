@@ -1,0 +1,191 @@
+package com.kitri.project.user.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.service.UserService;
+import com.kitri.project.user.view.*;
+
+public class UserMenuController implements ActionListener, ItemListener, ChangeListener {
+	UserMenu menu;
+	UserService service;
+
+	UserDto user;
+
+	public UserMenuController(UserMenu menu) {
+		this.menu = menu;
+		service = new UserService(menu);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object ob = e.getSource();
+		if (ob == menu.p1.button) {
+			menu.card.show(menu.panel, "UserBenefitPanel");
+		} else if (ob == menu.p1.modifyInfo) {
+			// System.out.println("메뉴의 userName은 "+ menu.userName.getText().trim());
+			user = service.getUserByName(menu.userName.getText().trim());
+			menu.p5.idF.setText(user.getUser_id());
+			menu.p5.nameF.setText(user.getUser_name());
+			menu.p5.emailF.setText(user.getUser_email());
+			menu.p5.phoneF.setText(user.getUser_phone());
+			// 기존 정보 셋팅
+			menu.card.show(menu.panel, "ModifyInfoP"); // 정보수정
+		} else if (ob == menu.p1.movieReservation) {
+			menu.card.show(menu.panel, "MovieReservationP"); // 영화예매
+		} else if (ob == menu.logoutButton) { // 로그아웃 >> 로그인창으로 이동
+			// System.out.println(ob); //검증
+			UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+			userLogin.setVisible(true); // 화면 보여주기 설정
+			menu.setVisible(false); // 기존 뷰 닫기
+			// System.out.println("로그아웃"); //검증
+		} else if (ob == menu.p1.button_1) {
+			menu.card.show(menu.panel, "UserPayCancelView");
+		} else if (ob == menu.p2_1.backB) {
+			menu.card.show(menu.panel, "menu"); // 메뉴로 돌아감
+		} else if (ob == menu.p2_1.reservationB) { // 예매 누르면 >> 예매창으로 이동 필요
+
+			menu.card.show(menu.panel, "MovieReservationP2");
+		} else if (ob == menu.p2_1.movieInfoB) { // 예매 누르면 >> 예매창으로 이동 필요
+			service.getMovieDetail(); //수정수정수정
+			menu.p9.setVisible(true);
+		} else if (ob == menu.p2_2.backB) {
+			menu.card.show(menu.panel, "MovieReservationP");
+		} else if (ob == menu.p2_2.paymentB) {
+			String userName = menu.userName.getText(); // 지점번호, 0부터임
+			int branchNo = Integer.parseInt(menu.p2_2.branchL.getText());
+			int movieNo;
+			if (branchNo == 1)
+				movieNo = menu.p2_1.p1_1.slider.getValue();
+			else // 2일떄
+				movieNo = menu.p2_1.p1_2.slider.getValue(); // 슬라이더에서 값 받아오기
+			String showDay = menu.p2_2.showdayC.getSelectedItem();
+			String showTime = menu.p2_2.showtimeC.getSelectedItem();
+			String carType = menu.p2_2.cartypeC.getSelectedItem();
+			int total = Integer.parseInt(menu.p2_2.totalpriceL.getText());
+			int mileage = 0;
+			if (!menu.p2_2.mileageF.equals("")) // 비지않았다면
+				mileage = Integer.parseInt(menu.p2_2.mileageF.getText());
+
+//			 service.insertReservation(userName, branchNo, movieNo, showDay, showTime,
+//			 carType, total, mileage);
+		} else if (ob == menu.p2_2.paymentCancelB) {
+			menu.card.show(menu.panel, "menu");
+			// } else if (ob == menu.p2_2.nextB) {
+			// menu.card.show(menu.panel, "MovieReservationP3");
+			// } else if (ob == menu.p2_3.backB) {
+			// menu.card.show(menu.panel, "MovieReservationP2");
+			// } else if (ob == menu.p2_3.payment_cancelB) {
+			// menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p5.backB) {
+			menu.card.show(menu.panel, "menu"); // 메뉴로 돌아감
+		} else if (ob == menu.p5.modifyB) {
+			String id = menu.p5.idF.getText();
+			String pwd = new String(menu.p5.passwordField_1.getPassword());
+			String re_pwd = new String(menu.p5.passwordField_2.getPassword());
+			String carType = menu.p5.carModelC.getSelectedItem().trim();
+			String name = menu.p5.nameF.getText().trim();
+			String email = menu.p5.emailF.getText().trim();
+			String phone = menu.p5.phoneF.getText().trim();
+			
+			int result= 0;
+			
+			if(pwd.equals("") || re_pwd.equals("")) {
+				JOptionPane.showMessageDialog(menu.panel, "비밀번호가 입력되지 않았습니다", "비밀번호 입력 오류", JOptionPane.WARNING_MESSAGE);
+			} else if(!pwd.equals(re_pwd)) {
+				JOptionPane.showMessageDialog(menu.panel, "비밀번호가 맞지 않습니다", "비밀번호 입력 오류", JOptionPane.WARNING_MESSAGE);
+
+				menu.p5.passwordField_1.setText("");
+				menu.p5.passwordField_2.setText("");
+			} else {
+				result = service.modifyUserInfo(id, pwd, re_pwd, carType, name, email, phone);
+			}
+			
+			
+
+			if (result >= 1) {
+//				System.out.println("userUpdate 성공");
+				menu.p5.passwordField_1.setText("");
+				menu.p5.passwordField_2.setText("");
+				menu.card.show(menu.panel, "menu");
+			}
+			else
+				System.out.println("userUpdate 실패");
+		} else if (ob == menu.p6.back) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p6.upBtn) {
+			menu.card.show(menu.panel, "UserMileageView");
+		} else if (ob == menu.p7.backB) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p8.backP2) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p8.payCancleP2) {
+			menu.card.show(menu.panel, "menu"); // 결재 취소 버튼 누르면 알럿트 창뜨고, 취소 메뉴창으로 이동 예정 - menu 대신 다른곳으로 LIST
+			JOptionPane.showMessageDialog(menu, "결재가 취소 되었습니다.", "결재취소안내", JOptionPane.INFORMATION_MESSAGE);
+		} else if (ob == menu.p9.okB) { // 예매 누르면 >> 예매창으로 이동 필요
+			menu.p9.setVisible(false);
+		}
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		Object ob = e.getSource();
+
+		// System.out.println("choice 값은 "+menu.p2_1.choice.getSelectedIndex());
+		// 영화예매 choice
+		if (ob == menu.p2_1.choice) {
+			if (menu.p2_1.choice.getSelectedItem().equals("서울")) {
+				service.changeMovieInfo(1, 0);
+				menu.p2_1.card.show(menu.p2_1.movieInfoP, "p1_1");
+			} else if (menu.p2_1.choice.getSelectedItem().equals("인천")) {
+				service.changeMovieInfo(2, 0);
+				menu.p2_1.card.show(menu.p2_1.movieInfoP, "p1_2");
+			} else
+				System.out.println("잘못넣었따...");
+		} else if (ob == menu.p2_2.cartypeC) {
+			// System.out.println("선택아이템은 "+menu.p2_2.cartypeC.getSelectedItem());
+			if (menu.p2_2.cartypeC.getSelectedItem().equals("소형차"))
+				menu.p2_2.totalpriceL.setText("7000"); // 시간나면 db에서 끌어오기
+			else if (menu.p2_2.cartypeC.getSelectedItem().equals("중형차"))
+				menu.p2_2.totalpriceL.setText("8000");
+			else if (menu.p2_2.cartypeC.getSelectedItem().equals("대형차"))
+				menu.p2_2.totalpriceL.setText("9000");
+			menu.p2_2.totalpriceL.setVisible(false);
+			menu.p2_2.totalpriceL.setVisible(true);
+		}
+		// 월에 따라 날짜 변경
+		if (ob == menu.p5.monthC) {
+			service.changeDay();
+		}
+
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		// JSlider용
+		Object ob = e.getSource();
+
+		// System.out.println("slider 값은 "+ menu.p2_1.p1_1.slider.getValue());
+		if (ob == menu.p2_1.p1_1.slider) {
+			System.out.println(menu.p2_1.choice.getSelectedIndex());
+			int idx = menu.p2_1.choice.getSelectedIndex();
+			int value = menu.p2_1.p1_1.slider.getValue(); // 0부터 시작함
+			// System.out.println("J슬라이더 값 얻어오기 : "+ value);
+			service.changeMovieInfo(idx + 1, value - 1);
+		} else if (ob == menu.p2_1.p1_2.slider) {
+			int idx = menu.p2_1.choice.getSelectedIndex();
+			int value = menu.p2_1.p1_2.slider.getValue(); // 0부터 시작함
+			// System.out.println("idx값 : "+idx+ " J슬라이더 값 : "+ value);
+			service.changeMovieInfo(idx + 1, value - 1);
+		}
+	}
+}

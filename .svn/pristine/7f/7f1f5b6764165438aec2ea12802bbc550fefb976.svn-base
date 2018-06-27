@@ -1,0 +1,154 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.Choice;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
+import javax.swing.JSeparator;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+
+public class UserMemberJoin extends JPanel {
+
+  public JTextField idFP2;//ID입력 TEXT 창
+  public JTextField pwsFP2; //password Text
+  public JTextField re_pwdFP2; //re_password Text
+  public Choice choiceP2; //차종 선택 
+  public JTextField nameTextFieldP2; //이름 Text
+  public JTextField birthFP2; // BIRTH Text
+  public JTextField emailFP2; //Email Text
+  public JTextField phoneFP2; //PHONE text
+   
+  public JButton backBP2; //뒤로가기 버튼
+  public JButton idCheackButtonP2; //ID 중복확인 버튼
+  public JButton emailCheackButtonP2; //email 중복 확인 버튼
+  public JButton cancelButtonP2; //취소버튼
+  public JButton memberJoinP2; //가입 버튼
+  
+  /**
+   * Create the panel.
+   */
+  public UserMemberJoin() {
+    setLayout(null);
+    
+    JLabel labelP2 = new JLabel("회원가입"); //회원가입
+    labelP2.setHorizontalAlignment(SwingConstants.CENTER);
+    labelP2.setFont(new Font("굴림", Font.BOLD, 18));
+    labelP2.setBounds(199, 10, 141, 35);
+    add(labelP2);
+    
+    JLabel idL = new JLabel("ID"); // ID JLabel 
+    idL.setFont(new Font("굴림", Font.PLAIN, 15));
+    idL.setBounds(12, 55, 37, 30);
+    add(idL);
+    
+    idFP2 = new JTextField();//ID입력 TEXT 창
+    idFP2.setText("ID 입력"); //ID입력 TEXT 창
+    idFP2.setColumns(10);
+    idFP2.setBounds(75, 55, 164, 30);
+    add(idFP2);
+    
+    JLabel pwdLP2 = new JLabel("PWD"); //pwdLP2 라벨
+    pwdLP2.setFont(new Font("굴림", Font.PLAIN, 15)); //pwdLP2 라벨
+    pwdLP2.setBounds(12, 95, 37, 30);
+    add(pwdLP2);
+    
+    pwsFP2 = new JTextField(); //password Text
+    pwsFP2.setText("PWD 입력 ");//password Text
+    pwsFP2.setColumns(10);
+    pwsFP2.setBounds(75, 95, 283, 30);
+    add(pwsFP2);
+    
+    re_pwdFP2 = new JTextField(); //re_password Text
+    re_pwdFP2.setText("PWD 한번더 입력"); //re_password Text
+    re_pwdFP2.setColumns(10);
+    re_pwdFP2.setBounds(75, 140, 283, 30);
+    add(re_pwdFP2);
+    
+    JLabel carModelLP2 = new JLabel("차종"); //차종 Lable
+    carModelLP2.setFont(new Font("굴림", Font.PLAIN, 15));//차종 Lable
+    carModelLP2.setBounds(12, 185, 37, 30);
+    add(carModelLP2);
+    
+//  choic 사용방법
+  choiceP2 = new Choice(); //차종 선택 
+  choiceP2.add("소형차");           //차종 선택 
+  choiceP2.add("중형차");
+  choiceP2.add("대형차");
+  choiceP2.select(0); //배열은 0부터 시작임
+  choiceP2.setBounds(75, 191, 283, 24);
+  add(choiceP2);
+    
+    JLabel nameLP2 = new JLabel("NAME"); //name Lable
+    nameLP2.setFont(new Font("굴림", Font.PLAIN, 15));//name Lable
+    nameLP2.setBounds(12, 230, 51, 30);
+    add(nameLP2);
+    
+    nameTextFieldP2 = new JTextField(); //이름 Text
+    nameTextFieldP2.setText("이름입력");//이름 Text
+    nameTextFieldP2.setColumns(10);
+    nameTextFieldP2.setBounds(75, 230, 283, 30);
+    add(nameTextFieldP2);
+    
+    JLabel birthLP2 = new JLabel("BIRTH"); // BIRTH JLabel
+    birthLP2.setFont(new Font("굴림", Font.PLAIN, 15)); // BIRTH JLabel
+    birthLP2.setBounds(12, 275, 51, 30);
+    add(birthLP2);
+    
+    birthFP2 = new JTextField(); // BIRTH Text
+    birthFP2.setText("생년월일 입력");  // BIRTH Text
+    birthFP2.setColumns(10);
+    birthFP2.setBounds(75, 275, 283, 30);
+    add(birthFP2);
+    
+    JLabel emailLP2 = new JLabel("E-Mail"); //Email label
+    emailLP2.setFont(new Font("굴림", Font.PLAIN, 15));//Email label
+    emailLP2.setBounds(12, 320, 51, 30);
+    add(emailLP2);
+    
+    emailFP2 = new JTextField(); //Email Text
+    emailFP2.setText("이메일 입력");//Email Text
+    emailFP2.setColumns(10);
+    emailFP2.setBounds(75, 320, 164, 30);
+    add(emailFP2);
+    
+    JLabel phoneLP2 = new JLabel("PHONE"); // PHONE Lable
+    phoneLP2.setFont(new Font("굴림", Font.PLAIN, 15)); // PHONE Lable
+    phoneLP2.setBounds(12, 365, 51, 30);
+    add(phoneLP2);
+    
+    phoneFP2 = new JTextField(); //PHONE text
+    phoneFP2.setText("전화번호 입력");//PHONE text
+    phoneFP2.setColumns(10);
+    phoneFP2.setBounds(75, 365, 283, 30);
+    add(phoneFP2);
+    
+    backBP2 = new JButton("BACK"); //뒤로가기 버튼
+    backBP2.setBounds(12, 10, 68, 30); //뒤로가기 버튼
+    add(backBP2);
+    
+    idCheackButtonP2 = new JButton("중복확인"); //ID 중복확인 버튼
+    idCheackButtonP2.setBounds(253, 55, 105, 30);//ID 중복확인 버튼
+    add(idCheackButtonP2);
+    
+    emailCheackButtonP2 = new JButton("중복확인"); //email 중복 확인 버튼
+    emailCheackButtonP2.setBounds(253, 320, 105, 30);//email 중복 확인 버튼
+    add(emailCheackButtonP2);
+    
+//    cancelButtonP2 = new JButton("취소"); //취소버튼
+//    cancelButtonP2.setBounds(139, 412, 105, 48);
+//    add(cancelButtonP2);
+    
+    memberJoinP2 = new JButton("가입"); //가입 버튼
+    memberJoinP2.setBounds(253, 412, 105, 48);//가입 버튼
+    add(memberJoinP2);
+
+  }
+}

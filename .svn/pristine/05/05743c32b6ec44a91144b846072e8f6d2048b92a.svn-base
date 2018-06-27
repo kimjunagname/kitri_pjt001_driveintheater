@@ -1,0 +1,108 @@
+package com.kitri.project.user.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.branch.service.BranchService;
+import com.kitri.project.cartype.CarTypeService;
+import com.kitri.project.user.controller.UserLoginController;
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+public class UserService {
+	public UserDao userDao;
+	public UserMenu menu;
+	public UserService register;
+	public UserDto userDto;
+	public UserLoginController userLoginController = null;
+	// UserLogin 변수 선언
+	public UserLogin login;
+	BranchService bservice = new BranchService();
+	CarTypeService cservice = new CarTypeService();
+
+	public UserService(UserMenu menu) {
+		this.menu = menu;
+		userDao = new UserDao();
+
+		List<String> list = bservice.getBranchNames();
+		int len = list.size();
+		for (int i = 0; i < len; i++) {
+			menu.p2_1.choice.add(list.get(i));
+			// choice값을 select로 가져와서 db랑 연동할 때 1 더해줘야함
+		}
+
+		// 영화예매2 초이스 오브젝트
+		List<String> list2 = cservice.selectCarTypeNameAll();
+		len = list2.size();
+		for (int i = 0; i < len; i++) {
+			menu.p2_2.cartypeC.add(list2.get(i)); //영화예매 차종
+			menu.p5.carModelC.add(list2.get(i)); // 정보수정 차종
+		}
+
+		// 영화예매 수량
+		for (int i = 1; i <= 10; i++) 
+			menu.p2_2.quentityC.add(i + "");
+		
+		// 정보수정 birth
+		for(int i= 1950; i<=2010; i++) 
+			menu.p5.yearC.add(i+"");
+		
+		for(int i=1; i<=12; i++)
+			menu.p5.monthC.add(i+"");
+		
+		for(int i=1; i<=31; i++)//최초 설정은 1월
+			menu.p5.dayC.add(i+"");
+		
+		// 정보수정 기본 셋팅
+		List list3= userDao.selectModifyUserInfo();
+		menu.p5.idF.setText(list3.get(0)+"테스트1");
+		menu.p5.nameF.setText(list3.get(1)+ "테스트2");
+		menu.p5.emailF.setText(list3.get(2)+ "테스트3");
+	}
+
+	public int register(UserDto userDto) {
+		return userDao.register(userDto);
+	}
+
+//	public int modifyUserInfo(String id, String pwd, String re_pwd, int carType, String name, 
+	 public int modifyUserInfo(String id, String pwd, String re_pwd, String carType, String name, 
+	String year, String month, String day, String email, String phone) {
+		if (pwd.equals(re_pwd)) // 패스워드가 맞지 않는다면
+			JOptionPane.showMessageDialog(menu.panel, "비밀번호가 맞지 않습니다");
+		else
+			userDao.modifyUserInfo(id, pwd, carType, name, year, month, day, email, phone);
+		return userDao.num;
+	}
+
+
+	public void changeDay() {
+		if(Integer.parseInt(menu.p5.monthC.getSelectedItem())== 1 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 3 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 5 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 8 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 10 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 12) {
+			menu.p5.dayC.removeAll(); //기존에 있던 값 지워주기
+			for(int i=1; i<=31; i++) {
+				menu.p5.dayC.add(i+"");
+			}
+		} else if (Integer.parseInt(menu.p5.monthC.getSelectedItem())== 4 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 6 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 7 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 9 ||
+				Integer.parseInt(menu.p5.monthC.getSelectedItem())== 11) {
+			menu.p5.dayC.removeAll();
+			for(int i=1; i<=30; i++) {
+				menu.p5.dayC.add(i+"");
+			}
+		} else {//2월
+			menu.p5.dayC.removeAll();
+			for(int i=1; i<=28; i++) {
+				menu.p5.dayC.add(i+"");
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+package com.kitri.project.emp.service;
+
+import com.kitri.project.emp.dto.EmpInfoDto;
+
+public class EmpInfoService {
+	EmpInfoDao dao;
+
+	public EmpInfoService() {
+		this.dao = new EmpInfoDao();
+	}
+
+	public int joinEmp(EmpInfoDto emp) {
+		return dao.insertEmp(emp);
+	}
+	
+	public EmpInfoDto getEmpByEmpNo(int emp_no) {
+		return dao.selectByNo(emp_no);
+	}
+	/*
+	 * dao.insertEmp(emp); dao.updateEmp(emp); dao.selectByEmail(email);
+	 * dao.selectById(id); dao.selectByName(name); dao.selectByNo(no);
+	 * dao.selectEmpAll()
+	 */
+
+	public EmpInfoDto loginEmp(String id, String pwd) {
+		return dao.login(id, pwd);
+	}
+
+	public boolean checkNotExistId(String id) {
+		return dao.isNotExistId(id);
+	}
+
+	public boolean checkNotExistEmail(String email) {
+		return dao.isNotExistEmail(email);
+	}
+
+	public int editEmp(EmpInfoDto edit) {
+		return dao.updateEmp(edit);
+	}
+
+}

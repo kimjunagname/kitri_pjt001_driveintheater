@@ -1,0 +1,23 @@
+cmd에서 
+
+
+
+sqlplus "/as sysdba"
+
+create user car
+identified by car
+default tablespace users
+temporary tablespace temp;
+
+
+grant connect, resource to car;
+
+
+
+conn car/car
+로 접속 되는지 확인
+
+sqldeveloper실행 후
+새접속 만들기 > 접속명 : car, ID/PWD > car/car
+
+접속 확인

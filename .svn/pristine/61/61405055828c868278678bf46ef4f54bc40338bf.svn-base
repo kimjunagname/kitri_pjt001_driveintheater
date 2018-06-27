@@ -1,0 +1,108 @@
+package com.kitri.project.user.view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import com.kitri.project.user.controller.UserMenuController;
+import java.awt.CardLayout;
+import java.awt.Font;
+
+public class UserMenu extends JFrame {
+	public JLabel label;
+	public JButton logoutButton; //로그아웃 
+	public JPanel panel; 
+	public CardLayout card = new CardLayout();
+	public UserMenuPanel p1 = new UserMenuPanel();
+	public UserMovieReservationPanel1 p2_1 = new UserMovieReservationPanel1();
+	public UserMovieReservationPanel2 p2_2 = new UserMovieReservationPanel2();
+	public UserMovieReservationPanel3 p2_3 = new UserMovieReservationPanel3(); 
+	public UserMovieReservationLookupPanel p3 = new UserMovieReservationLookupPanel();
+	public UserMovieReservationCancelPanel p4 = new UserMovieReservationCancelPanel();
+	public UserModifyInfoPanel p5 = new UserModifyInfoPanel();
+	public UserBenefitPanel p6 = new UserBenefitPanel();
+	public UserMileageBenefitView p7 = new UserMileageBenefitView();
+  public UserMovieReservationCancelPanel p8 = new UserMovieReservationCancelPanel();
+	public JButton button_1;
+	public UserLogin userLogin; //로그인창
+	
+	public final JLabel label_2 = new JLabel("\uB4F1\uAE09 : \uC77C\uBC18");
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UserMenu userMenuframe = new UserMenu();
+					userMenuframe.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public UserMenu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 400, 600);
+		getContentPane().setLayout(null);
+
+		label = new JLabel("\uD64D\uAE38\uB3D9\uB2D8 \uD658\uC601\uD569\uB2C8\uB2E4");
+		label.setFont(new Font("굴림", Font.PLAIN, 18));
+		label.setBounds(12, 10, 227, 20);
+		getContentPane().add(label);
+
+		logoutButton = new JButton("\uB85C\uADF8\uC544\uC6C3");//로그아웃 
+		logoutButton.setBounds(259, 10, 123, 45);
+		getContentPane().add(logoutButton);
+
+		panel = new JPanel();
+		panel.setBounds(12, 78, 370, 470);
+		getContentPane().add(panel);
+		panel.setLayout(card);
+		 	
+		p1.button.setText("\uB9C8\uC77C\uB9AC\uC9C0 & \uD61C\uD0DD\uC870\uD68C");
+		p1.button_1.setText("영화예매 내역");
+		
+		panel.add("menu", p1);
+		panel.add("MovieReservationP", p2_1);
+		panel.add("MovieReservationP2", p2_2);
+		panel.add("MovieReservationP3", p2_3);
+		panel.add("view3", p3); 
+		panel.add("view4", p4); 
+		panel.add("ModifyInfoP", p5);
+		panel.add("UserBenefitPanel", p6);
+		panel.add("UserMileageView", p7);
+		panel.add("UserPayCancelView", p8);
+   
+		card.show(panel, "menu");
+		setResizable(false);
+
+		UserMenuController control = new UserMenuController(this);
+		
+		logoutButton.addActionListener(control);
+		p1.button.addActionListener(control);
+		p1.modifyInfo.addActionListener(control);
+		p1.movieReservation.addActionListener(control);
+		p1.button_1.addActionListener(control);
+		p1.button.addActionListener(control);//로그아웃 리스너
+		p2_1.backB.addActionListener(control);
+		p2_1.reservationB.addActionListener(control);
+		p2_2.backB.addActionListener(control);
+		p2_2.previousB.addActionListener(control);
+		p2_2.nextB.addActionListener(control);
+		p2_3.backB.addActionListener(control);
+		p5.backB.addActionListener(control);
+		p6.back.addActionListener(control);
+		p6.upBtn.addActionListener(control);
+		p7.backB.addActionListener(control);
+		p8.backP2.addActionListener(control);
+		p8.payCancleP2.addActionListener(control);
+		
+		label_2.setFont(new Font("굴림", Font.PLAIN, 15));
+		label_2.setBounds(12, 35, 227, 20);
+
+		getContentPane().add(label_2);
+	}
+}

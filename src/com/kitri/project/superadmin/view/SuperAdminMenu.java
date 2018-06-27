@@ -1,0 +1,88 @@
+package com.kitri.project.superadmin.view;
+
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import com.kitri.project.superadmin.controller.SuperAdminMenuController;
+import com.kitri.project.superadmin.controller.SuperVisorConnectionProvider;
+
+public class SuperAdminMenu extends JFrame {
+	public JPanel panel;
+	public CardLayout card = new CardLayout();
+	public JPanel contentPane;
+	public JButton insertMovieB;
+	public SuperAdminChartPanel superAdminChartPanel; 
+
+	SuperAdminStatisticsPanel p1 = new SuperAdminStatisticsPanel();
+	public SuperAdminMovieInsertView insertM = new SuperAdminMovieInsertView();
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SuperAdminMenu frame = new SuperAdminMenu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public SuperAdminMenu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 980, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("\uC601\uD654 \uB204\uC801 \uC608\uB9E4");
+		lblNewLabel.setFont(new Font("±¼¸²", Font.BOLD, 25));
+		lblNewLabel.setBounds(32, 10, 414, 65);
+		contentPane.add(lblNewLabel);
+
+		JButton button = new JButton("\uC815\uBCF4\uC218\uC815");
+		button.setBounds(738, 12, 99, 31);
+		contentPane.add(button);
+
+		JButton button_1 = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		button_1.setBounds(849, 12, 99, 31);
+		contentPane.add(button_1);
+
+		JLabel label = new JLabel("\uC9C1\uCC45 : ");
+		label.setHorizontalAlignment(SwingConstants.LEFT);
+		label.setBounds(583, 12, 116, 31);
+		contentPane.add(label);
+
+		JLabel label_1 = new JLabel("\uB2D8 \uD658\uC601\uD569\uB2C8\uB2E4!");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(472, 12, 99, 31);
+		contentPane.add(label_1);
+
+		insertMovieB = new JButton("\uC601\uD654\uB4F1\uB85D");
+		insertMovieB.setBounds(703, 256, 105, 27);
+		p1.add(insertMovieB);
+
+		panel = new JPanel();
+		panel.setBounds(8, 60, 940, 481);
+		getContentPane().add(panel);
+		panel.setLayout(card);
+
+		panel.add("view1", p1);
+		panel.add("insertM", insertM);
+		panel.add("p7", superAdminChartPanel);
+		
+		
+
+		card.show(panel, "view1");
+		setResizable(false);
+		//
+		// SuperAdminMenuController control = new SuperAdminMenuController(this);
+		// insertMovieB.addActionListener(control);
+		// insertM.insertImageB.addActionListener(control);
+		// insertM.registerMovieB.addActionListener(control);
+	}
+}

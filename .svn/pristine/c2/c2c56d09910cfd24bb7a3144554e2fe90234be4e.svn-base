@@ -1,0 +1,143 @@
+package com.kitri.project.emp.view;
+
+import java.awt.Font;
+
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class EmpMovieInsertView extends JPanel {
+
+			public JPanel panel;
+			public JTextField movieGenreTF;
+			public JButton posterApplybtn;
+			public JButton movieApplyBtn;
+			public JTextField movieNoTF;
+			public JTextField movieTitleTF;
+			public JTextField movieruntimeTF;
+			public JPanel moviepview;
+			public JTextField moviePosterImageTF;
+			private JTextField textField;
+			private JTextField textField_1;
+			
+	
+	public EmpMovieInsertView() {
+	
+				setBounds(0, 0, 940, 510);
+				setLayout(null);
+				
+				moviepview = new JPanel();
+				moviepview.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				moviepview.setBounds(28, 26, 385, 407);
+				add(moviepview);
+				moviepview.setLayout(null);
+				
+				JLabel lblNewLabel = new JLabel("\uC5EC\uAE30\uC5D0 \uB4F1\uB85D\uB41C \uC601\uD654\uD3EC\uC2A4\uD130 \uBCF4\uC5EC\uC900\uB2E4.");
+				lblNewLabel.setBounds(106, 189, 201, 15);
+				moviepview.add(lblNewLabel);
+				
+				panel = new JPanel();
+				panel.setBounds(28, 441, 385, 48);
+				add(panel);
+				panel.setLayout(null);
+				
+				posterApplybtn = new JButton("\uD3EC\uC2A4\uD130 \uB4F1\uB85D");
+				posterApplybtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				posterApplybtn.setBounds(265, 0, 108, 38);
+				panel.add(posterApplybtn);
+				
+				moviePosterImageTF = new JTextField();
+				moviePosterImageTF.setBounds(0, 6, 260, 28);
+				panel.add(moviePosterImageTF);
+				moviePosterImageTF.setColumns(10);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBounds(436, 26, 492, 463);
+				add(panel_1);
+				panel_1.setLayout(null);
+				
+				JLabel mvtitlelab = new JLabel("\uC601\uD654\uBC88\uD638");
+				mvtitlelab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvtitlelab.setBounds(26, 83, 83, 15);
+				panel_1.add(mvtitlelab);
+				
+				JLabel mvruntlab = new JLabel("\uC0C1\uC601\uC2DC\uC791\uAE30\uAC04");
+				mvruntlab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvruntlab.setBounds(14, 186, 111, 15);
+				panel_1.add(mvruntlab);
+				
+				JLabel mvgenrelab = new JLabel("\uC0C1\uC601\uD69F\uC218");
+				mvgenrelab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvgenrelab.setBounds(26, 139, 83, 15);
+				panel_1.add(mvgenrelab);
+				
+				JLabel mvstorylab = new JLabel("\uC0C1\uC601\uC2DC\uAC041");
+				mvstorylab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvstorylab.setBounds(26, 240, 83, 15);
+				panel_1.add(mvstorylab);
+				
+				JLabel mvactorlab = new JLabel("\uC0C1\uC601\uC2DC\uAC042");
+				mvactorlab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvactorlab.setBounds(26, 295, 83, 15);
+				panel_1.add(mvactorlab);
+				
+				movieTitleTF = new JTextField();
+				movieTitleTF.setBounds(123, 77, 125, 28);
+				panel_1.add(movieTitleTF);
+				movieTitleTF.setColumns(10);
+				
+				movieruntimeTF = new JTextField();
+				movieruntimeTF.setColumns(10);
+				movieruntimeTF.setBounds(123, 180, 186, 28);
+				panel_1.add(movieruntimeTF);
+				
+				JLabel mvnolab = new JLabel("\uC9C0\uC810\uBC88\uD638");
+				mvnolab.setFont(new Font("±¼¸²", Font.BOLD, 14));
+				mvnolab.setBounds(26, 35, 83, 15);
+				panel_1.add(mvnolab);
+				
+				movieNoTF = new JTextField();
+				movieNoTF.setColumns(10);
+				movieNoTF.setBounds(123, 29, 125, 28);
+				panel_1.add(movieNoTF);
+				
+				movieGenreTF = new JTextField();
+				movieGenreTF.setColumns(10);
+				movieGenreTF.setBounds(123, 133, 49, 28);
+				panel_1.add(movieGenreTF);
+				
+				movieApplyBtn = new JButton("\uC601\uD654 \uB4F1\uB85D");
+				movieApplyBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				movieApplyBtn.setBounds(372, 415, 108, 38);
+				panel_1.add(movieApplyBtn);
+				
+				textField = new JTextField();
+				textField.setBounds(123, 236, 161, 24);
+				panel_1.add(textField);
+				textField.setColumns(10);
+				
+				textField_1 = new JTextField();
+				textField_1.setBounds(123, 291, 161, 24);
+				panel_1.add(textField_1);
+				textField_1.setColumns(10);
+				
+				setVisible(true);
+
+//ºÒ·¯¿À±â 
+				
+				EmpMain emp = new EmpMain();
+				
+				
+			}	
+	}
+
+

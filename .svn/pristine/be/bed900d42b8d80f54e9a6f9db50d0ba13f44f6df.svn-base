@@ -1,0 +1,107 @@
+package com.kitri.project.chart.dto;
+
+//지점 별 현금, 마일리지 매출금액
+public class PayChartDto {
+	private int branch_no;
+	private String branch_name;
+	private long ticket_paytotal;
+	private long ticket_paycash;
+	private long ticket_paymileage;
+	
+	//영화결제
+	private int user_no;
+	private int movie_no;
+	private int ticket_salcount;
+	private String ticket_paydate;
+	private String movie_palydate;
+	
+	private int ticket_payno;
+	public int getTicket_payno() {
+		return ticket_payno;
+	}
+
+	public void setTicket_payno(int ticket_payno) {
+		this.ticket_payno = ticket_payno;
+	}
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+	public int getMovie_no() {
+		return movie_no;
+	}
+
+	public void setMovie_no(int movie_no) {
+		this.movie_no = movie_no;
+	}
+
+	public int getTicket_salcount() {
+		return ticket_salcount;
+	}
+
+	public void setTicket_salcount(int ticket_salcount) {
+		this.ticket_salcount = ticket_salcount;
+	}
+
+	public String getTicket_paydate() {
+		return ticket_paydate;
+	}
+
+	public void setTicket_paydate(String ticket_paydate) {
+		this.ticket_paydate = ticket_paydate;
+	}
+
+	public String getMovie_palydate() {
+		return movie_palydate;
+	}
+
+	public void setMovie_palydate(String movie_palydate) {
+		this.movie_palydate = movie_palydate;
+	}
+
+	public int getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(int branch_no) {
+		this.branch_no = branch_no;
+	}
+
+	public String getBranch_name() {
+		return branch_name;
+	}
+
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
+	}
+
+	public long getTicket_paytotal() {
+		return ticket_paytotal;
+	}
+
+	public void setTicket_paytotal(long ticket_paytotal) {
+		this.ticket_paytotal = ticket_paytotal;
+	}
+
+	public long getTicket_paycash() {
+		return ticket_paycash;
+	}
+
+	public void setTicket_paycash(long ticket_paycash) {
+		this.ticket_paycash = ticket_paycash;
+	}
+
+	public long getTicket_paymileage() {
+		return ticket_paymileage;
+	}
+
+	public void setTicket_paymileage(long ticket_paymileage) {
+		this.ticket_paymileage = ticket_paymileage;
+	}
+
+}

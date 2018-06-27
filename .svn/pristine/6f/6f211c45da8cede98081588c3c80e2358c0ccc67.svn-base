@@ -1,0 +1,56 @@
+package com.kitri.project.emp.controller;
+
+import java.awt.event.*;
+import java.util.List;
+
+import org.jfree.ui.tabbedui.TabbedFrame;
+
+import com.kitri.project.emp.movie.service.EmpMovieService;
+import com.kitri.project.emp.view.EmpMain;
+import com.kitri.project.movie.dto.MovieDto;
+
+
+	public class EmpEditController implements ActionListener {
+		EmpMain empMain;
+		EmpMovieService mService;
+		List<MovieDto> list;
+		public TabbedFrame TestFrame;
+		
+		
+		public EmpEditController(EmpMain empMain) {
+			// TODO Auto-generated constructor stub
+			this.empMain = empMain;
+			mService = new EmpMovieService();
+		}
+
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object obj = e.getSource();
+			
+			if(obj == empMain.tabFrame.empMovieEditDelete.movieViewBtn) {
+				System.out.println("E_E_Controller 영화조회");		
+			}else if(obj == empMain.tabFrame.empMovieEditDelete.movieDeleteBtn) {
+				System.out.println("E_E_Controller 영화삭제");
+				list = mService.selectAllMovie();
+				int len = list.size();
+				for (int i = 0; i < len; i++) {
+					empMain.tabFrame.movieInsertPanel.movieTitleC.add(list.get(i).getMovie_title());
+				}
+				empMain.tabFrame.movieInsertPanel.branchNameL.setText(EmpInfoController.login.getBranch_name());
+				empMain.tabFrame.movieInsertPanel.movieTitleL.setText(list.get(0).getMovie_title());
+				empMain.tabFrame.movieInsertPanel.runTimeL.setText(String.valueOf((list.get(0).getMovie_runningtime())));
+				empMain.tabFrame.movieInsertPanel.movieGenreL.setText(list.get(0).getMovie_genre());
+				empMain.tabFrame.movieInsertPanel.storyArea.setText(list.get(0).getMovie_story());
+				empMain.tabFrame.movieInsertPanel.actorArea.setText(list.get(0).getMovie_actor());
+				
+				empMain.tabFrame.card.show(empMain.tabFrame.movieTabPanel, "movieInsertPanel");
+			}else if(obj == empMain.tabFrame.empMovieEditDelete.movieEditBtn) {
+				System.out.println("E_E_Controller 영화수정");
+
+				}
+			}
+		}
+	
+
+

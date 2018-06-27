@@ -1,0 +1,58 @@
+package com.kitri.project.superadmin.controller;
+
+import java.awt.FileDialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.movie.dto.MovieDto;
+import com.kitri.project.superadmin.service.SuperAdminService;
+import com.kitri.project.superadmin.view.SuperAdminMenu;
+
+public class SuperAdminMenuController implements ActionListener {
+	SuperAdminMenu menu;
+	SuperAdminService service;
+	String fileName = null;
+
+	public SuperAdminMenuController(SuperAdminMenu menu) {
+		this.menu = menu;
+		service = new SuperAdminService(menu);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object ob = e.getSource();
+
+		if (ob == menu.insertMovieB) {
+			menu.card.show(menu.panel, "insertM");
+			// System.out.println("실행됨");
+		} else if (ob == menu.insertM.insertImageB) {
+			fileName = service.openFile();
+		} else if (ob == menu.insertM.registerMovieB) {
+			if (fileName != null) {
+				MovieDto dto = new MovieDto();
+				// no, title, poster, genre, story, actor
+				dto.setMovie_title(menu.insertM.movieTitleTF.getText().trim());
+				dto.setMovie_poster(fileName);
+				dto.setMovie_genre(menu.insertM.movieGenreTF.getText().trim());
+				dto.setMovie_story(menu.insertM.movieStroyTA.getText().trim());
+				dto.setMovie_actor(menu.insertM.movieActorTA.getText().trim());
+				dto.setMovie_runningtime(Integer.parseInt(menu.insertM.movieRuntimeTF.getText().trim()));
+				// 유효성검사...나중에.....
+				//
+				// System.out.println("실행실행");
+				// System.out.println(dto.getMovie_title());
+				// System.out.println(dto.getMovie_poster());
+				// System.out.println(dto.getMovie_genre());
+				// System.out.println(dto.getMovie_story());
+				// System.out.println(dto.getMovie_actor());
+				// System.out.println(dto.getMovie_runningtime());
+				service.insertMovie(dto);
+			} else // 이미지 등록 x
+				JOptionPane.showMessageDialog(menu, "이미지를 등록해주세요");
+		}
+
+	}
+}

@@ -1,0 +1,125 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JPasswordField;
+
+public class UserModifyInfoPanel extends JPanel {
+	public JTextField idF;
+	public JTextField textField_3;
+	public JTextField birthF;
+	public JTextField emailF;
+	public JTextField phoneF;
+	public JButton backB;
+	private JButton modify;
+	private JLabel label;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public UserModifyInfoPanel() {
+		setLayout(null);
+		
+		JLabel idL = new JLabel("ID");
+		idL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		idL.setBounds(12, 55, 37, 30);
+		add(idL);
+		
+		idF = new JTextField();
+		idF.setEditable(false);
+		idF.setText("ID \uC785\uB825");
+		idF.setColumns(10);
+		idF.setBounds(75, 55, 283, 30);
+		add(idF);
+		
+		JLabel pwdL = new JLabel("PWD");
+		pwdL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		pwdL.setBounds(12, 95, 37, 30);
+		add(pwdL);
+		
+		JLabel carModelL = new JLabel("\uCC28\uC885");
+		carModelL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		carModelL.setBounds(12, 185, 37, 30);
+		add(carModelL);
+		
+		JSpinner carModelF = new JSpinner();
+		carModelF.setBounds(75, 185, 283, 30);
+		add(carModelF);
+		
+		JLabel nameL = new JLabel("NAME");
+		nameL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		nameL.setBounds(12, 230, 51, 30);
+		add(nameL);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("\uC774\uB984\uC744 \uC785\uB825");
+		textField_3.setColumns(10);
+		textField_3.setBounds(75, 230, 283, 30);
+		add(textField_3);
+		
+		JLabel birthL = new JLabel("BIRTH");
+		birthL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		birthL.setBounds(12, 275, 51, 30);
+		add(birthL);
+		
+		birthF = new JTextField();
+		birthF.setText("\uC0DD\uB144\uC6D4\uC77C \uC785\uB825");
+		birthF.setColumns(10);
+		birthF.setBounds(75, 275, 283, 30);
+		add(birthF);
+		
+		JLabel emailL = new JLabel("E-Mail");
+		emailL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		emailL.setBounds(12, 320, 51, 30);
+		add(emailL);
+		
+		emailF = new JTextField();
+		emailF.setText("\uC774\uBA54\uC77C \uC785\uB825");
+		emailF.setColumns(10);
+		emailF.setBounds(75, 320, 283, 30);
+		add(emailF);
+		
+		JLabel phoneL = new JLabel("PHONE");
+		phoneL.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		phoneL.setBounds(12, 365, 51, 30);
+		add(phoneL);
+		
+		phoneF = new JTextField();
+		phoneF.setText("\uC804\uD654\uBC88\uD638\uB97C \uC785\uB825");
+		phoneF.setColumns(10);
+		phoneF.setBounds(75, 365, 283, 30);
+		add(phoneF);
+		
+		backB = new JButton("BACK");
+		backB.setBounds(12, 10, 68, 30);
+		add(backB);
+		
+		modify = new JButton("\uC218\uC815");
+		modify.setBounds(253, 412, 105, 48);
+		add(modify);
+		
+		label = new JLabel("\uD68C\uC6D0\uC815\uBCF4\uC218\uC815");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("±¼¸²", Font.BOLD, 18));
+		label.setBounds(199, 10, 141, 35);
+		add(label);
+		
+		passwordField = new JPasswordField();
+		passwordField.setToolTipText("");
+		passwordField.setBounds(75, 95, 283, 30);
+		add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(75, 135, 283, 30);
+		add(passwordField_1);
+
+	}
+}

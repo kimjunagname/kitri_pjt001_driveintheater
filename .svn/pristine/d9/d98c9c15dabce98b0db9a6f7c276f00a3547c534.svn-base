@@ -1,0 +1,82 @@
+package com.kitri.project.user.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.user.service.UserService;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+public class UserMenuController implements ActionListener, ItemListener {
+	UserMenu menu;
+	UserService service;
+
+	public UserMenuController(UserMenu menu) {
+		this.menu = menu;
+		service= new UserService(menu);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object ob = e.getSource();
+		if (ob == menu.p1.button) {
+			menu.card.show(menu.panel, "UserBenefitPanel");
+		} else if (ob == menu.p1.modifyInfo) {
+			menu.card.show(menu.panel, "ModifyInfoP"); // 정보수정
+		} else if (ob == menu.p1.movieReservation) {
+			menu.card.show(menu.panel, "MovieReservationP"); // 영화예매
+		} else if (ob == menu.logoutButton) { // 로그아웃 >> 로그인창으로 이동
+			// System.out.println(ob); //검증
+			UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+			userLogin.setVisible(true); // 화면 보여주기 설정
+			menu.setVisible(false); // 기존 뷰 닫기
+			// System.out.println("로그아웃"); //검증
+		} else if (ob == menu.p1.button_1) {
+			menu.card.show(menu.panel, "UserPayCancelView");
+		} else if (ob == menu.p2_1.backB) {
+			menu.card.show(menu.panel, "menu"); // 메뉴로 돌아감
+		} else if (ob == menu.p2_1.reservationB) { // 예매 누르면 >> 예매창으로 이동 필요
+			menu.card.show(menu.panel, "MovieReservationP2");
+		} else if (ob == menu.p2_2.backB) {
+			menu.card.show(menu.panel, "MovieReservationP");
+		} else if (ob == menu.p2_2.nextB) {
+			menu.card.show(menu.panel, "MovieReservationP3");
+		} else if (ob == menu.p2_3.backB) {
+			menu.card.show(menu.panel, "MovieReservationP2"); 
+		} else if (ob == menu.p2_3.payment_cancelB) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p5.backB) {
+			menu.card.show(menu.panel, "menu"); // 메뉴로 돌아감
+		} else if (ob == menu.p5.modifyB) {
+			//
+		} else if (ob == menu.p6.back) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p6.upBtn) {
+			menu.card.show(menu.panel, "UserMileageView");
+		} else if (ob == menu.p7.backB) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p8.backP2) {
+			menu.card.show(menu.panel, "menu");
+		} else if (ob == menu.p8.payCancleP2) {
+			menu.card.show(menu.panel, "menu"); // 결재 취소 버튼 누르면 알럿트 창뜨고, 취소 메뉴창으로 이동 예정 - menu 대신 다른곳으로 LIST
+			JOptionPane.showMessageDialog(menu, "결재가 취소 되었습니다.", "결재취소안내", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		Object ob= e.getSource();
+		
+		//월에 따라 날짜 변경
+		if(ob== menu.p5.monthC) {
+			service.changeDay();
+		}
+	}
+
+}

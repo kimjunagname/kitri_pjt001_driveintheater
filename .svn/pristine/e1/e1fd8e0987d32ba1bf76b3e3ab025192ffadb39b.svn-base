@@ -1,0 +1,151 @@
+package com.kitri.project.user.view;
+
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.JSlider;
+import javax.swing.JList;
+import java.awt.List;
+import javax.swing.JDesktopPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+
+public class UserMovieReservationPanel3 extends JPanel {
+	public JButton backB;
+	public JButton paymentB;
+	public JButton payment_cancelB;
+	private JTextField textField;
+
+	/**
+	 * Create the panel.
+	 * 
+	 */
+	public UserMovieReservationPanel3() {
+		setLayout(null);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(175, 72, 1, 1);
+		add(desktopPane);
+		
+		backB = new JButton("BACK");
+		backB.setBounds(12, 10, 68, 30);
+		add(backB);
+		
+		JLabel titleL = new JLabel("\uC601\uD654\uACB0\uC81C");
+		titleL.setHorizontalAlignment(SwingConstants.RIGHT);
+		titleL.setFont(new Font("±¼¸²", Font.BOLD, 25));
+		titleL.setBounds(199, 10, 141, 35);
+		add(titleL);
+		
+		paymentB = new JButton("\uACB0\uC81C");
+		paymentB.setBounds(253, 412, 105, 48);
+		add(paymentB);
+		
+		payment_cancelB = new JButton("\uACB0\uC81C\uCDE8\uC18C");
+		payment_cancelB.setBounds(136, 413, 105, 48);
+		add(payment_cancelB);
+		
+		JLabel label_1 = new JLabel("\uC601\uD654\uC81C\uBAA9");
+		label_1.setHorizontalAlignment(SwingConstants.LEFT);
+		label_1.setFont(new Font("±¼¸²", Font.BOLD, 23));
+		label_1.setBounds(22, 65, 140, 35);
+		add(label_1);
+		
+		JLabel label = new JLabel("\uC9C0\uC810");
+		label.setHorizontalAlignment(SwingConstants.LEFT);
+		label.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label.setBounds(22, 110, 80, 25);
+		add(label);
+		
+		JLabel label_2 = new JLabel("\uC0C1\uC601\uC77C");
+		label_2.setHorizontalAlignment(SwingConstants.LEFT);
+		label_2.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_2.setBounds(22, 145, 80, 25);
+		add(label_2);
+		
+		JLabel label_3 = new JLabel("\uC0C1\uC601\uC2DC\uAC04");
+		label_3.setHorizontalAlignment(SwingConstants.LEFT);
+		label_3.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_3.setBounds(22, 180, 80, 25);
+		add(label_3);
+		
+		JLabel label_4 = new JLabel("\uCC28\uC885");
+		label_4.setHorizontalAlignment(SwingConstants.LEFT);
+		label_4.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_4.setBounds(22, 215, 80, 25);
+		add(label_4);
+		
+		JLabel label_5 = new JLabel("\uC218\uB7C9");
+		label_5.setHorizontalAlignment(SwingConstants.LEFT);
+		label_5.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_5.setBounds(22, 250, 80, 25);
+		add(label_5);
+		
+		JLabel label_7 = new JLabel("\uCD1D \uAE08\uC561 : @@\uC6D0");
+		label_7.setHorizontalAlignment(SwingConstants.LEFT);
+		label_7.setFont(new Font("±¼¸²", Font.BOLD, 23));
+		label_7.setBounds(158, 355, 200, 35);
+		add(label_7);
+		
+		JLabel label_8 = new JLabel("\uB9C8\uC77C\uB9AC\uC9C0");
+		label_8.setHorizontalAlignment(SwingConstants.LEFT);
+		label_8.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_8.setBounds(22, 285, 80, 25);
+		add(label_8);
+		
+		JLabel label_9 = new JLabel("\uC9C0\uC810\uC740\uBD88\uBCC0");
+		label_9.setHorizontalAlignment(SwingConstants.LEFT);
+		label_9.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_9.setBounds(125, 110, 211, 25);
+		add(label_9);
+		
+		JLabel label_10 = new JLabel("\uBD88\uBCC0");
+		label_10.setHorizontalAlignment(SwingConstants.LEFT);
+		label_10.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_10.setBounds(125, 145, 211, 25);
+		add(label_10);
+		
+		JLabel label_11 = new JLabel("\uC9C0\uC810\uC740\uBD88\uBCC0");
+		label_11.setHorizontalAlignment(SwingConstants.LEFT);
+		label_11.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_11.setBounds(125, 180, 211, 25);
+		add(label_11);
+		
+		JLabel label_12 = new JLabel("\uC9C0\uC810\uC740\uBD88\uBCC0");
+		label_12.setHorizontalAlignment(SwingConstants.LEFT);
+		label_12.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_12.setBounds(125, 215, 211, 25);
+		add(label_12);
+		
+		JLabel label_13 = new JLabel("\uC9C0\uC810\uC740\uBD88\uBCC0");
+		label_13.setHorizontalAlignment(SwingConstants.LEFT);
+		label_13.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_13.setBounds(125, 250, 211, 25);
+		add(label_13);
+		
+		textField = new JTextField();
+		textField.setBounds(125, 285, 182, 25);
+		add(textField);
+		textField.setColumns(10);
+		
+		JLabel label_14 = new JLabel("\uC6D0");
+		label_14.setHorizontalAlignment(SwingConstants.LEFT);
+		label_14.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_14.setBounds(319, 285, 39, 25);
+		add(label_14);
+		
+		JLabel label_15 = new JLabel("1000\uC6D0 \uB2E8\uC704\uB85C \uC0AC\uC6A9\uD558\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4");
+		label_15.setHorizontalAlignment(SwingConstants.LEFT);
+		label_15.setFont(new Font("±¼¸²", Font.PLAIN, 12));
+		label_15.setBounds(125, 320, 211, 15);
+		add(label_15);
+
+	}
+}

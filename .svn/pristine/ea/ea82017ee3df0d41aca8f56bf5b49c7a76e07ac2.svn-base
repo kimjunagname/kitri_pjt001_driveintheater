@@ -1,0 +1,124 @@
+package com.kitri.project.user.view;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JPasswordField;
+import java.awt.Choice;
+
+public class UserMemberJoinPanel2 extends JPanel {
+	public JTextField idTextP5; //id 입력
+	public JTextField nameTextp5; // name 입력 
+	public JTextField emailTextP5; //eamil 입력
+	public JTextField phoneTextP5; //전화번호 입력
+	public JButton BackButtenP5; //뒤로가기 버튼 
+	public JButton joinBettonP5; // 가입 버튼
+	public JLabel label; //라벨
+	public JPasswordField passwordFieldP5_1; //패스워드1 입력
+	public JPasswordField passwordFieldP5_2; //패스워드2 입력
+	public Choice carModelCP5;
+
+	/**
+	 * Create the panel.
+	 */
+	public UserMemberJoinPanel2() {
+		setLayout(null);
+		
+		label = new JLabel("회원가입");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("굴림", Font.BOLD, 18));
+		label.setBounds(199, 10, 141, 35);
+		add(label);
+		
+		JLabel idL = new JLabel("ID"); 
+		idL.setFont(new Font("굴림", Font.PLAIN, 15));
+		idL.setBounds(12, 55, 37, 30);
+		add(idL);
+		
+		idTextP5 = new JTextField(); //id입력
+		idTextP5.setText("");
+		idTextP5.setColumns(10);
+		idTextP5.setBounds(75, 55, 283, 30);
+		add(idTextP5);
+		
+		JLabel pwdL = new JLabel("PWD");
+		pwdL.setFont(new Font("굴림", Font.PLAIN, 15));
+		pwdL.setBounds(12, 114, 37, 30);
+		add(pwdL);
+		
+		passwordFieldP5_1 = new JPasswordField(); //pwd 가입
+		passwordFieldP5_1.setToolTipText("");
+		passwordFieldP5_1.setBounds(75, 114, 283, 30);
+		add(passwordFieldP5_1);
+		
+		passwordFieldP5_2 = new JPasswordField();
+		passwordFieldP5_2.setBounds(75, 163, 283, 30);
+		add(passwordFieldP5_2);
+		
+		JLabel carModelL = new JLabel("차종"); 
+		carModelL.setFont(new Font("굴림", Font.PLAIN, 15));
+		carModelL.setBounds(12, 209, 37, 30);
+		add(carModelL);
+		
+		
+//  choic 사용방법
+		carModelCP5 = new Choice(); //차종 선택 
+    carModelCP5.add("1");           //차종 선택 
+    carModelCP5.add("2");
+    carModelCP5.add("3");
+    carModelCP5.select(0); //배열은 0부터 시작임
+    carModelCP5.setBounds(75, 215, 283, 24);
+    add(carModelCP5);
+		
+		
+		
+		//carModelCP5 = new Choice(); //차종 선택
+	//	carModelCP5.setBounds(75, 215, 283, 30);
+		//add(carModelCP5);
+		
+		JLabel nameL = new JLabel("NAME");
+		nameL.setFont(new Font("굴림", Font.PLAIN, 15));
+		nameL.setBounds(10, 265, 51, 30);
+		add(nameL);
+		
+		nameTextp5 = new JTextField(); // 이름 입력
+		nameTextp5.setColumns(10);
+		nameTextp5.setBounds(75, 265, 283, 30);
+		add(nameTextp5);
+		
+		JLabel emailL = new JLabel("E-Mail");
+		emailL.setFont(new Font("굴림", Font.PLAIN, 15));
+		emailL.setBounds(12, 317, 51, 30);
+		add(emailL);
+		
+		emailTextP5 = new JTextField();
+		emailTextP5.setColumns(10);
+		emailTextP5.setBounds(75, 317, 283, 30);
+		add(emailTextP5);
+		
+		JLabel phoneL = new JLabel("PHONE"); 
+		phoneL.setFont(new Font("굴림", Font.PLAIN, 15));
+		phoneL.setBounds(12, 365, 51, 30);
+		add(phoneL);
+		
+		phoneTextP5 = new JTextField(); //전화번호 입력
+		phoneTextP5.setText("");
+		phoneTextP5.setColumns(10);
+		phoneTextP5.setBounds(75, 365, 283, 30);
+		add(phoneTextP5);
+			
+		joinBettonP5 = new JButton("JOIN"); //회원가입버튼
+		joinBettonP5.setBounds(253, 425, 105, 48);
+		add(joinBettonP5);
+
+    BackButtenP5 = new JButton("BACK"); //뒤로가기버튼
+    BackButtenP5.setBounds(12, 10, 68, 30);
+    add(BackButtenP5);
+		
+	}
+}

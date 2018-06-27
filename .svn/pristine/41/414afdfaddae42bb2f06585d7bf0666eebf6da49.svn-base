@@ -1,0 +1,42 @@
+package com.kitri.project.superadmin.service;
+
+import java.awt.FileDialog;
+import java.io.File;
+
+import javax.swing.ImageIcon;
+
+import com.kitri.project.superadmin.view.SuperAdminMenu;
+
+public class SuperAdminService {
+	SuperAdminMenu menu;
+	SuperAdminDao dao;
+	
+	public SuperAdminService(SuperAdminMenu menu) {
+		this.menu= menu;
+		dao= new SuperAdminDao();
+	}
+
+	public void openFile() {
+		FileDialog read= new FileDialog(menu, "열기", FileDialog.LOAD);
+		read.setVisible(true);
+		
+		String fileDir= read.getDirectory();
+		String fileName= read.getFile();
+		
+		String filePath= fileDir+ File.separator+ fileName;
+		menu.insertM.imagePathF.setText(filePath);
+		
+		menu.insertM.imageL.setIcon(new ImageIcon(filePath));
+	}
+
+	public void registerMovie() {
+		String name= menu.insertM.movieTitleTF.getText();
+		int runtime= Integer.parseInt(menu.insertM.movieRuntimeTF.getText());
+		String genre= menu.insertM.movieGenreTF.getText();
+		String story= menu.insertM.movieStroyTA.getText();
+		String cast= menu.insertM.movieActorTA.getText();
+		dao.regieterMovie(name, runtime, genre, story, cast);
+		System.out.println("Service 실행 : "+ name+ runtime+ genre+ story+ cast);
+	}
+
+}

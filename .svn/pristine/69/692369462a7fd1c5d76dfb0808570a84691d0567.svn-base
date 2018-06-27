@@ -1,0 +1,161 @@
+package com.kitri.project.chart.service;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.kitri.project.chart.dto.PayChartDto;
+import com.kitri.project.sql.CarSql;
+
+public class PayChartDao {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	CarSql myCon = null;
+
+	public PayChartDao() {
+		myCon = new CarSql();
+	}
+
+	//TODO selectChartByYear 지점의 year년 총매출, 총현금결제금액, 총마일리지결제금액
+	public PayChartDto selectChartByYear(int branch_no, String year){
+		PayChartDto dto = null;
+		try {
+			con = myCon.connect();
+			StringBuffer sb = new StringBuffer();
+			sb.append("select sub.branch_no, branch_name, sub.ticket_paytotal, sub.ticket_paycash, sub.ticket_paymileage from branch, ");
+			sb.append("(select branch_no, sum(ticket_paytotal) ticket_paytotal, sum(ticket_paycash) ticket_paycash, sum(ticket_paymileage) ticket_paymileage ");
+			sb.append("from TICKET_PAY ");
+			sb.append("where branch_no = ? ");
+			sb.append("and ticket_paydate ");
+			sb.append("between to_date(?, 'yyyymmdd') and last_day(to_date(?, 'yyyymmdd')) ");
+			sb.append("group by branch_no) sub ");
+			sb.append("where branch.branch_no = sub.branch_no");
+			
+			System.out.println(sb.toString());
+ /*				 String sql = "select branch_no, ticket_paytotal, ticket_paycash, ticket_paymileage";
+				 sql += "from TICKET_PAY where branch_no = ?";
+				 sql += "and ticket_paydate";
+				 sql += "between to_date(?, 'yyyymmdd') and last_day(to_date(?, 'yyyymmdd'))";
+*/
+		 	pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, branch_no);
+			pstmt.setString(2, year+"0101");
+			pstmt.setString(3, year+"1201");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new PayChartDto();
+				dto.setBranch_no(branch_no);
+				dto.setBranch_name(rs.getString("branch_name"));
+				dto.setTicket_paytotal(rs.getLong("ticket_paytotal"));
+				dto.setTicket_paycash(rs.getLong("ticket_paycash"));
+				dto.setTicket_paymileage(rs.getLong("ticket_paymileage"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			myCon.close(rs, pstmt, con);
+			return dto;
+		}
+	}
+
+//	TODO selectCharByLast3Years 지점의 최근 3년간 매출
+	public List<PayChartDto> selectCharByLast3Years(int branch_no, String year) {
+		List<PayChartDto> list = null;
+		try {
+			list = new ArrayList<>();
+			con = myCon.connect();
+			String sql = "select branch_no, ticket_paytotal, ticket_paycash, ticket_paymileage";
+				 sql += "from TICKET_PAY where branch_no = ?";
+				 sql += "and ticket_paydate";
+				 sql += "between to_date(?, 'yyyymmdd') and last_day(to_date(?, 'yyyymmdd'))";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, branch_no);
+			pstmt.setString(2, year+"0101");
+			pstmt.setString(3, year+"1201");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PayChartDto dto = new PayChartDto();
+				dto.setBranch_no(rs.getInt("branch_no"));
+				dto.setTicket_paytotal(rs.getLong("ticket_paytotal"));
+				dto.setTicket_paycash(rs.getLong("ticket_paycash"));
+				dto.setTicket_paymileage(rs.getLong("ticket_paymileage"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			myCon.close(rs, pstmt, con);
+			return list;
+		}
+	}
+
+//	TODO selectChartByYearAllBranchs 최고관리자용 year년 각 지점별 총매출, 총현금결제금액, 총마일리지결제금액
+	public List<PayChartDto> selectChartByYearAllBranchs(String year) {
+		List<PayChartDto> list = null;
+		try {
+			list = new ArrayList<>();
+			con = myCon.connect();
+			String sql = "select branch_no, sum(ticket_paytotal) ticket_paytotal, sum(ticket_paycash) ticket_paycash, sum(ticket_paymileage) ticket_paymileage";
+				 sql += "from TICKET_PAY";
+				 sql += "where ticket_paydate";
+				 sql += "between to_date(?, 'yyyymmdd') and last_day(to_date(?, 'yyyymmdd'))";
+				 sql += "group by branch_no";
+				 sql += "order by branch_no asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, year+"0101");
+			pstmt.setString(2, year+"1201");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PayChartDto dto = new PayChartDto();
+				dto.setBranch_no(rs.getInt("branch_no"));
+				dto.setTicket_paytotal(rs.getLong("ticket_paytotal"));
+				dto.setTicket_paycash(rs.getLong("ticket_paycash"));
+				dto.setTicket_paymileage(rs.getLong("ticket_paymileage"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			myCon.close(rs, pstmt, con);
+			return list;
+		}
+	}
+	
+//	public PayChartDto insertReservation(String userName, int branchNo, int movieNo, String showDay, String showTime,
+//			String carType, int total, int mileage) {
+//		PayChartDto dto = null;
+//		try {
+//			con= myCon.connect();
+//			String sql= "insert into ticket_pay values(ticket_payno_seq.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+//			
+//			pstmt= con.prepareStatement(sql);
+//			pstmt.setString(1, userName);
+//			pstmt.setInt(2, branchNo);
+//			pstmt.setInt(3, movieNo);
+//			pstmt.setInt(4, total);
+//			pstmt.setInt(5, total-mileage); //paycash
+//			pstmt.setInt(6, mileage); //paymileage
+//			pstmt.setInt(7, 1); //salcount
+////			pstmt.setDate(8, showDay); showDay를 date로 바꾸기..?
+//			
+//			int num= pstmt.executeUpdate(); //insert
+//			
+//			rs= pstmt.executeQuery();
+//			if(rs.next()) {
+//				dto= new PayChartDto();
+//				dto.setTicket_payno(rs.getInt("ticket_payno"));
+//				dto.setUser_no(rs.getInt("user_no"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return dto;
+//	}
+
+	//TODO selectByPeriod 기간별 영화 매출 통계
+//	List<PayChartDto> selectByPeriod(String date)
+	
+	
+}

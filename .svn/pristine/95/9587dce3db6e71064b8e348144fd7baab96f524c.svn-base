@@ -1,0 +1,267 @@
+package com.kitri.project.user.controller;
+
+import java.awt.event.*;
+import javax.swing.*;
+import com.kitri.project.cartype.CarTypeService;
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.service.UserLoginService;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+//ActionListener를 받기 위해 ActionListener 상속
+public class UserLoginController implements ActionListener, MouseListener {
+  
+  public UserLogin login; // UserLogin 변수 선언
+  public UserMenu userMenu;
+  public UserLoginService userLoginService; // UserService 변수 선언
+  public UserDto userDto;
+  public String id;
+  public String pass;
+  public String nameP3, emailP3;
+  public String idTextP4, emailTextP4;
+  public CarTypeService cservice = new CarTypeService();
+
+  public String user_ID;//아이디
+  public String user_PWD;//암호
+  public String user_PWD1;//암호 
+//  public int carType_NO;//차종번호
+  public int carType_NO;//차종번호
+  public String user_NAME;//이름
+  public String user_EMAIL;//이메일
+  public String user_PHONE;//핸드폰
+
+  
+  public UserLoginController(UserLogin login) {
+    // UserLogin 뷰와 UserLoginController 연결
+    this.login = login;
+    userLoginService = new UserLoginService(); // userservice와 연결
+  }
+  
+  
+  public UserLoginController(UserMenu userMenu) {
+    this.userMenu = userMenu;
+    userMenu = new UserMenu();
+  }
+  
+  
+  
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    // UserLogin 버튼 액션시 행동 설정
+    Object ob = e.getSource();
+    if (ob == login.p1.joinButtonp1) {// 회원가입 폼 이동
+      System.out.println("회원 가입 버튼 클릭");
+      login.card.show(login.panel, "joinView2");
+    } else if (ob == login.p1.loginButtonp1) {// UserMenu 이동
+      
+      System.out.println("로그인 버튼 클릭");
+      // login 뷰에서 id, pwd 값 가져오기
+      id = login.p1.idintextp1.getText().trim();
+      pass = new String(login.p1.pwdintextp1.getPassword());
+      // login 뷰에서 id, pwd 값 출력
+      System.out.println("뷰에서 controller로 가져온 id: " + id + "\t pass: " + pass);
+      
+      // sertivic(id, pass) 호출해서 값 가져오기
+      userDto = userLoginService.login(id, pass);
+      
+      System.out.println("userDto: >>>>" + userDto);
+      
+      if (userDto != null) {// 로그인 성공 -- memberDto에 변수가 없으면(디비에서 값을 제대로 가져온 경우)
+        JOptionPane.showMessageDialog(login, "로그인 성공", "정보", JOptionPane.INFORMATION_MESSAGE);
+    
+        userDto = userLoginService.nameSuch(id);    
+        String name = userDto.getUser_name();
+            System.out.println(name);
+            login.userMenuframe.userName.setText(name);
+            
+            System.out.println("컨트롤러 id" + id);
+            System.out.println("컨트롤러 userDto" + userDto);
+            System.out.println("컨트롤러 userDto.getUser_name():" + userDto.getUser_name());          
+            System.out.println("컨트롤러 name:" + name);
+            
+           System.out.println("컨트롤러 id" + id);
+           userDto = userLoginService.gradeSuch(id);
+           String gread = userDto.getGrade_name();
+           System.out.println("컨트롤러 userDto" + userDto);
+           System.out.println("컨트롤러 userDto.getGRADE_NAME2():" + userDto.getGrade_name());          
+           System.out.println("컨트롤러 gread:" + gread);
+           login.userMenuframe.userGrade.setText(gread);
+           
+            login.userMenuframe.setVisible(true);
+            login.setVisible(false);
+//        20180514일 부 안효인 강사님에게 문의할 예정
+          
+      } else {
+        
+//        UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+        login.setVisible(true); // 로그인 화면 보여주기 설정
+        login.setVisible(false);
+      }
+      
+    } else if (ob == login.p1.idSuchButtenp1) {// id 이동
+      login.card.show(login.panel, "idsuchView3");
+      System.out.println("ID 찾기 버튼 클릭");
+    } else if (ob == login.p1.pwdSuchButtenp1) {// pwd 이동
+      login.card.show(login.panel, "pwdsuchView4");
+      System.out.println("PWD 찾기 버튼 클릭");
+      /////////////////////////////////////////////////////////// P2
+    } else if (ob == login.p2.joinBettonP5) {// 가입 버튼
+      
+      System.out.println("가입 버튼 클릭");
+//      // UserMemberJoinPanel2 뷰에서 id, pwd, 차종, 이름, e-mail, 전화번호  값 가져오기      
+      user_ID = login.p2.idTextP5.getText().trim();//아이디
+      user_PWD = new String(login.p2.passwordFieldP5_1.getPassword());//암호
+      user_PWD1  = new String(login.p2.passwordFieldP5_2.getPassword());
+//      carType_NO = login.p2.carModelCP5.getSelectedItem();
+      carType_NO = (Integer.parseInt(login.p2.carModelCP5.getSelectedItem())) ;//차종번호
+      user_NAME = login.p2.nameTextp5.getText();//이름
+      user_EMAIL = login.p2.emailTextP5.getText();//이메일
+      user_PHONE = login.p2.phoneTextP5.getText();//전화번호
+               
+      System.out.println("뷰에서 controller로 가져온 user_ID: " + user_ID + "\t user_PWD: " + user_PWD +   "\t user_PWD1: " + user_PWD1 +    "\t carType_NO: " + carType_NO
+                                        + "\t user_NAME: " +user_NAME+ "\t user_EMAIL: " + user_EMAIL+ "\t user_PHONE: " + user_PHONE); 
+      // sertivic(id, pass) 호출해서 값 가져오기
+      userDto = userLoginService.join(user_ID, user_PWD,user_PWD1, carType_NO, user_NAME, user_EMAIL, user_PHONE);
+
+      if (userDto == null) {// 로그인 성공 -- memberDto에 변수가 없으면(디비에서 값을 제대로 가져온 경우)
+        JOptionPane.showMessageDialog(login.userLoginFrame, "회원 가입이 성공하였습니다. 로그인 화면으로 이동합니다.","정보", JOptionPane.WARNING_MESSAGE);
+        UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+        userLogin.setVisible(true); // 로그인 화면 보여주기 설정
+        login.setVisible(false);
+      } else {
+        JOptionPane.showMessageDialog(login.userLoginFrame, "다시 작성하여 주시기 바랍니다.","정보", JOptionPane.WARNING_MESSAGE);  
+      }
+        
+    } else if (ob == login.p2.BackButtenP5) {// 뒤로가기 버튼
+//       JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.","BACK", JOptionPane.WARNING_MESSAGE);
+      UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+      userLogin.setVisible(true); // 로그인 화면 보여주기 설정
+      login.setVisible(false); // 회원 가입 화면 닫기
+    }
+    /////////////////////////////////////////////////////////// P3
+      else if (ob == login.p3.suchButtonP3) {// 조회 버튼
+      
+      System.out.println("조회버튼 클릭");
+      // name, email 값 가져오기
+      nameP3 = login.p3.nameTextP3.getText().trim();
+      emailP3 = login.p3.emailTextP3.getText().trim();
+      
+      // id such 뷰에서 name, email 값 출력
+      System.out.println("뷰에서 controller로 가져온 id: " + nameP3 + "\t pass: " + emailP3);
+      
+      // userDto(name, email) 호출해서 값 가져오기
+      userDto = userLoginService.idsuch(nameP3, emailP3);
+      System.out.println("컨트롤러 - userDto: " + userDto.getUser_id());
+      
+      if (userDto != null) {// (디비에서 값을 제대로 가져온 경우)
+        JOptionPane.showMessageDialog(login, "id 조회성공", "정보", JOptionPane.INFORMATION_MESSAGE);
+        
+        login.p3_2.idSuchTextP3_2.setText(userDto.getUser_id());
+        login.card.show(login.panel, "p3_2");
+        login.p3_2.setVisible(true);
+        login.p3.setVisible(false);
+        
+      }
+    } else if (ob == login.p3.backBtnP3) {// Iback 버튼
+      // JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.", "상태
+      // 안내", JOptionPane.INFORMATION_MESSAGE);
+      UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+      userLogin.setVisible(true); // 로그인 화면 보여주기 설정
+      login.setVisible(false); // 회원 가입 화면 닫기
+      
+    }
+    /////////////////////////////////////////////////////////// P4
+    else if (ob == login.p4.backButtonP4) {// back butten
+      // JOptionPane.showMessageDialog(login.userLoginFrame, "BACK 버튼을 클릭 하셨습니다.", "상태
+      // 안내", JOptionPane.INFORMATION_MESSAGE);
+      UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+      userLogin.setVisible(true); // 로그인 화면 보여주기 설정
+      login.setVisible(false); // 회원 가입 화면 닫기
+      
+    } else if (ob == login.p4.suchButtenP4) {// 조회 butten
+      System.out.println("조회버튼 클릭");
+      // idTextP4, emailTextP4, 값 가져오기
+      idTextP4 = login.p4.idTextP4.getText().trim();
+      emailTextP4 = login.p4.emailTextP4.getText().trim();
+      
+      // pwsuch 뷰에서 idTextP4, emailTextP4 값 출력
+      System.out.println("뷰에서 controller로 가져온 idTextP4: " + idTextP4 + "\t emailTextP4: " + emailTextP4);
+      
+      // userDto(idTextP4, emailTextP4) 호출해서 값 가져오기
+      userDto = userLoginService.pwdsuch(idTextP4, emailTextP4);
+      System.out.println("컨트롤러 - userDto: " + userDto.getUser_pwd());
+      
+      if (userDto != null) {// (디비에서 값을 제대로 가져온 경우)
+        // JOptionPane.showMessageDialog(login, "조회성공", "정보",
+        // JOptionPane.INFORMATION_MESSAGE);
+        login.card.show(login.panel, "pwdsuchResultView4_2");
+        login.p4_2.pwdTextP4_2.setText(userDto.getUser_pwd());
+        login.p4.setVisible(false);
+        
+      }
+    }
+    
+    ////////////////////////////////////////////////////// P3_2
+    else if (ob == login.p3_2.idSuchTextP3_2) {// id text
+    } else if (ob == login.p3_2.okButtenP3_2) {// 확인 버튼
+      System.out.println("확인 버튼 클릭");
+      UserLogin userLogin = new UserLogin(); // 직접 userLogin 객체 생성
+      userLogin.setVisible(true); // 로그인 화면 보여주기 설정
+      login.p3_2.setVisible(false);
+      // 회원 가입 화면 닫기
+    }
+    
+    /////////////////////////////////////////////////////////// P4_2
+    else if (ob == login.p4_2.pwdTextP4_2) {// pwdtext
+    
+    } else if (ob == login.p4_2.okButtenP4_2) { // 확인 butten
+      System.out.println("확인 버튼 클릭");
+      login.p4_2.setVisible(false); // 로그인 화면 보여주기 설정
+      login.p1.setVisible(true);
+    }
+    
+  }
+
+   //마우스 리스너 통해서 클릭시 텍스트 값 초기화
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    Object ob = e.getSource();
+    if (ob == login.p1.idintextp1) { // id
+      login.p1.idintextp1.setText("");
+    } else if (ob == login.p1.pwdintextp1) { // pwd
+      login.p1.pwdintextp1.setText("");
+    } else if (ob == login.p3.nameTextP3) { // name
+      login.p3.nameTextP3.setText("");
+    } else if (ob == login.p3.emailTextP3) { // email
+      login.p3.emailTextP3.setText("");
+    } else if (ob == login.p4.idTextP4) { // id
+      login.p4.idTextP4.setText("");
+    } else if (ob == login.p4.emailTextP4) { // email
+      login.p4.emailTextP4.setText("");
+    } 
+  }
+  
+  @Override
+  public void mouseEntered(MouseEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  @Override
+  public void mouseExited(MouseEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  @Override
+  public void mousePressed(MouseEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  @Override
+  public void mouseReleased(MouseEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+}

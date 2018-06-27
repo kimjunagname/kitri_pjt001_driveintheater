@@ -1,0 +1,28 @@
+package com.kitri.project.emp.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import com.kitri.project.emp.view.EmpMain;
+
+public class EmpWorkController implements ActionListener {
+	EmpMain empMain;
+
+	public EmpWorkController(EmpMain empMain) {
+		this.empMain = empMain;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		
+		if(obj == empMain.tabFrame.workMainPanel.workInBtn) {
+			System.out.println("E_W_Controller 출근버튼");
+		}else if(obj == empMain.tabFrame.workMainPanel.workOutBtn) {
+			System.out.println("E_W_Controller 퇴근버튼");
+		}else if(obj == empMain.tabFrame.workMainPanel.timeMngBtn) {
+			System.out.println("E_W_Controller 근태관리버튼");
+		}
+	}
+
+}

@@ -1,0 +1,57 @@
+package com.kitri.project.supermanager.controller;
+
+import java.awt.FileDialog;
+import java.awt.event.*;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
+import com.kitri.project.supervisor.view.*;
+
+public class SuperAdminTabController implements ActionListener {
+	SuperAdministratorTabbedFrame menu;
+
+	public SuperAdminTabController(SuperAdministratorTabbedFrame menu) {
+		this.menu = menu;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object ob = e.getSource();
+		if (ob == menu.modifyInfo) {
+			System.out.println("정보수정");
+		} else if (ob == menu.logoutBtn) {
+			System.out.println("로그아웃");
+		} else if (ob == menu.salesManagePanel.GangNamMonthSales) {
+			System.out.println("강남지역 월매출 조회 패널 삽입");
+		} else if (ob == menu.salesManagePanel.GangNamDaysSales) {
+			System.out.println("강남지역 일매출 조회 패널 삽입");
+		} else if (ob == menu.salesManagePanel.GangBukMonthSales) {
+			System.out.println("강북지역 월매출 조회 패널 삽입");
+		} else if (ob == menu.salesManagePanel.GangBukDaysSales) {
+			System.out.println("강북지역 일매출 조회 패널 삽입");
+		} else if (ob == menu.salesManagePanel.GangSeoMonthSales) {
+			System.out.println("강서지역 월매출 조회 패널 삽입");
+		} else if (ob == menu.salesManagePanel.GangSeoDaysSales) {
+			System.out.println("강서지역 일매출 조회 패널 삽입");
+		} else if (ob == menu.movieInsertPanel.movieApplyBtn) {
+			JOptionPane.showMessageDialog(menu.movieInsertPanel, "등록을 완료했습니다.", "자동차 극장 - 최고관리자",
+					JOptionPane.INFORMATION_MESSAGE);
+			// TF, TA 값 DB로 INSERT후에
+			menu.movieInsertPanel.movieNoTF.setText("");
+			menu.movieInsertPanel.movieTitleTF.setText("");
+			menu.movieInsertPanel.movieruntimeTF.setText("");
+			menu.movieInsertPanel.movieGenreTF.setText("");
+			menu.movieInsertPanel.movieStroyTA.setText("");
+			menu.movieInsertPanel.movieActorTA.setText("");
+			menu.movieInsertPanel.moviePosterImageTF.setText("");
+			System.out.println("영화등록 처리되었음");
+		} else if (ob == menu.movieInsertPanel.posterApplybtn) {
+			System.out.println("포스터 등록");
+		}
+
+	}
+}

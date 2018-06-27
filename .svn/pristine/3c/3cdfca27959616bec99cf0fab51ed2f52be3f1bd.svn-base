@@ -1,0 +1,46 @@
+package com.kitri.project.user.service;
+
+import javax.swing.JOptionPane;
+
+import com.kitri.project.user.controller.UserLoginController;
+import com.kitri.project.user.dto.UserDto;
+import com.kitri.project.user.view.UserLogin;
+import com.kitri.project.user.view.UserMenu;
+
+public class UserService {
+  public UserDao dao = null;
+  public UserMenu menu = null;
+  public UserService register = null;
+   public UserDto userDto= null;
+   public UserLoginController userLoginController = null;
+  //UserLogin 변수 선언
+  public UserLogin login = null;
+  
+  public UserService() {
+    dao = new UserDao();
+  }
+  
+  public int register(UserDto userDto) {
+    return dao.register(userDto);
+  }
+  
+  public int modifyUserInfo(String id, String pwd, String re_pwd, int carType, String name, String birth, String email, int phone) {
+    if(pwd!= re_pwd) //패스워드가 맞지 않는다면
+      JOptionPane.showMessageDialog(menu.panel, "비밀번호가 맞지 않습니다");
+    else
+      dao.modifyUserInfo(id, pwd, carType, name, birth, email, phone);
+    return dao.num;
+  }
+  
+    public UserDto login(String id, String pass) {
+//System.out.println("유저 서비스 호츌" + id + "" + pass);
+      if(id == null || pass == null) {
+    //if(userLoginController.id == null || pass == null) {
+    System.out.println("널이냐?");
+//    System.out.println("service >>>>>>>> " + id + "                  " + pass); //controller 객체가 가지온 id, pwd 확인하기
+    return null;    
+  }
+    return dao.login(id, pass); 
+   // return dao.login(userDto);
+  }
+}

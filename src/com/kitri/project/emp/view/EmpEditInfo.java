@@ -1,0 +1,177 @@
+package com.kitri.project.emp.view;
+
+import java.awt.Canvas;
+import java.awt.Label;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.Choice;
+
+public class EmpEditInfo extends JFrame {
+
+	public JPanel contentPane;
+	public JLabel idLabel;
+	public JPasswordField pwdTf;
+	public JPasswordField pwdChkTf;
+	public JLabel nameLabel;
+	public JTextField phoneTf;
+	public JLabel emailLabel;
+	public JButton cancelBtn;
+	public JButton editBtn;
+	public Label jobLabel;
+	public Label branchLabel;
+	public Choice yearC;
+	public JLabel label_8;
+	public Choice monthC;
+	public JLabel label_9;
+	public Choice dateC;
+	public JLabel label_10;
+
+	/**
+	 * Launch the application.
+	 */
+/*	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EmpJoin frame = new EmpJoin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+*/
+	/**
+	 * Create the frame.
+	 */
+	public EmpEditInfo() {
+		setTitle("\uC790\uB3D9\uCC28 \uADF9\uC7A5 - \uC815\uBCF4\uC218\uC815");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 980, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("\uC544\uC774\uB514");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(78, 35, 73, 40);
+		contentPane.add(lblNewLabel_1);
+		
+		idLabel = new JLabel();
+		idLabel.setBounds(173, 35, 153, 40);
+		contentPane.add(idLabel);
+		
+		JLabel label = new JLabel("\uBE44\uBC00\uBC88\uD638*");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(78, 90, 73, 40);
+		contentPane.add(label);
+		
+		pwdTf = new JPasswordField();
+		pwdTf.setColumns(10);
+		pwdTf.setBounds(173, 90, 272, 40);
+		contentPane.add(pwdTf);
+		
+		JLabel label_1 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778*");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(61, 145, 99, 40);
+		contentPane.add(label_1);
+		
+		pwdChkTf = new JPasswordField();
+		pwdChkTf.setColumns(10);
+		pwdChkTf.setBounds(173, 146, 272, 40);
+		contentPane.add(pwdChkTf);
+		
+		JLabel label_2 = new JLabel("\uC774\uBA54\uC77C");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(78, 315, 73, 40);
+		contentPane.add(label_2);
+		
+		nameLabel = new JLabel();
+		nameLabel.setBounds(173, 204, 272, 40);
+		contentPane.add(nameLabel);
+		
+		JLabel label_3 = new JLabel("\uC804\uD654\uBC88\uD638");
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setBounds(78, 406, 73, 40);
+		contentPane.add(label_3);
+		
+		emailLabel = new JLabel();
+		emailLabel.setBounds(173, 316, 264, 40);
+		contentPane.add(emailLabel);
+		
+		phoneTf = new JTextField();
+		phoneTf.setColumns(10);
+		phoneTf.setBounds(173, 407, 272, 40);
+		contentPane.add(phoneTf);
+		
+		JLabel label_5 = new JLabel("\uC9C1 \uCC45");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setBounds(78, 357, 73, 40);
+		contentPane.add(label_5);
+		
+		JLabel label_6 = new JLabel("\uC9C0 \uC810");
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setBounds(285, 357, 73, 40);
+		contentPane.add(label_6);
+		
+		jobLabel = new Label();
+		jobLabel.setBounds(173, 357, 82, 21);
+		contentPane.add(jobLabel);
+		
+		branchLabel = new Label();
+		branchLabel.setBounds(364, 357, 82, 40);
+		contentPane.add(branchLabel);
+		
+		JLabel label_7 = new JLabel("\uC774 \uB984");
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setBounds(78, 203, 73, 40);
+		contentPane.add(label_7);
+		
+		JLabel label_4 = new JLabel("\uC0DD\uB144\uC6D4\uC77C");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setBounds(78, 260, 73, 40);
+		contentPane.add(label_4);
+		
+		cancelBtn = new JButton("\uCDE8  \uC18C");
+		cancelBtn.setBounds(173, 462, 99, 50);
+		contentPane.add(cancelBtn);
+		
+		editBtn = new JButton("\uC815\uBCF4\uC218\uC815");
+		editBtn.setBounds(337, 462, 108, 50);
+		contentPane.add(editBtn);
+		
+		Canvas canvas = new Canvas();
+		canvas.setBounds(475, 155, 407, 339);
+		contentPane.add(canvas);
+		
+		yearC = new Choice();
+		yearC.setBounds(168, 269, 62, 27);
+		contentPane.add(yearC);
+		
+		label_8 = new JLabel("\uB144");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setBounds(227, 259, 40, 40);
+		contentPane.add(label_8);
+		
+		monthC = new Choice();
+		monthC.setBounds(270, 269, 47, 27);
+		contentPane.add(monthC);
+		
+		label_9 = new JLabel("\uC6D4");
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		label_9.setBounds(312, 259, 40, 40);
+		contentPane.add(label_9);
+		
+		dateC = new Choice();
+		dateC.setBounds(358, 269, 62, 27);
+		contentPane.add(dateC);
+		
+		label_10 = new JLabel("\uC77C");
+		label_10.setHorizontalAlignment(SwingConstants.CENTER);
+		label_10.setBounds(412, 259, 40, 40);
+		contentPane.add(label_10);
+	}
+}
